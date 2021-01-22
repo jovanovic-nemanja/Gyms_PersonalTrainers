@@ -1,0 +1,1 @@
+<?php /**PATH /home/wa7ash23/public_html/vendor/resources/views/layouts/menu.blade.php ENDPATH**/ ?>

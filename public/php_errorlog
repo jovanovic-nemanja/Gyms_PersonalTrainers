@@ -1,0 +1,178 @@
+[24-Dec-2020 19:56:02 UTC] PHP Fatal error:  Allowed memory size of 805306368 bytes exhausted (tried to allocate 400560128 bytes) in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php on line 38
+[24-Dec-2020 19:56:12 UTC] PHP Fatal error:  Allowed memory size of 805306368 bytes exhausted (tried to allocate 400560128 bytes) in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php on line 38
+[24-Dec-2020 19:57:35 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected '?' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:40
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/Container.php(8 in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 19:57:55 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected '?' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:40
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/Container.php(8 in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 20:40:56 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected 'protected' (T_PROTECTED), expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:54
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 20:41:21 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected 'protected' (T_PROTECTED), expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:54
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 20:41:51 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected 'protected' (T_PROTECTED), expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:54
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 20:42:09 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected 'protected' (T_PROTECTED), expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:54
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 20:51:56 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:36
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/ in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 20:51:59 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:36
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/ in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 20:52:08 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:36
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/ in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 20:52:15 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:36
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/ in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 20:52:43 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:36
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/ in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 21:09:14 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:36
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/ in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 21:09:19 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:36
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/ in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 21:12:30 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:36
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/ in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 21:15:23 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected '}' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:38
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/Container.php(8 in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 21:15:31 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected '}' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:38
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/Container.php(8 in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[24-Dec-2020 21:15:36 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected '}' in /home/wa7ash23/public_html/vendor/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php:38
+Stack trace:
+#0 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#2 /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php(8): spl_autoload_call('Illuminate\\Foun...')
+#3 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(444): include('/home/wa7ash23/...')
+#4 /home/wa7ash23/public_html/vendor/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/wa7ash23/...')
+#5 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Http\\Contro...')
+#6 [internal function]: spl_autoload_call('App\\Http\\Contro...')
+#7 /home/wa7ash23/public_html/vendor/vendor/laravel/framework/src/Illuminate/Container/Container.php(8 in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[18-Jan-2021 04:40:24 UTC] PHP Fatal error:  Cannot use Mail as Mail because the name is already in use in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/LoginController.php on line 10
+[18-Jan-2021 04:40:26 UTC] PHP Fatal error:  Cannot use Mail as Mail because the name is already in use in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/LoginController.php on line 10
+[18-Jan-2021 04:40:35 UTC] PHP Fatal error:  Cannot use Mail as Mail because the name is already in use in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/LoginController.php on line 10
+[18-Jan-2021 04:41:17 UTC] PHP Fatal error:  Cannot use Mail as Mail because the name is already in use in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/LoginController.php on line 10
+[18-Jan-2021 20:48:21 UTC] PHP Fatal error:  Cannot use AuthenticatesUsers as AuthenticatesUsers because the name is already in use in /home/wa7ash23/public_html/vendor/app/Http/Controllers/Auth/RegisterController.php on line 15
+[20-Jan-2021 12:23:50 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\ProfileController::thankyou() in /home/wa7ash23/public_html/vendor/app/Http/Controllers/ProfileController.php on line 532
