@@ -1,120 +1,154 @@
 @extends('layouts.default')
 {{-- Page title --}}
 @section('title')
-Dashboard @parent
+Document Manager @parent
 @stop
-{{-- page level styles --}}
-@section('header_styles')
-<!-- page vendors -->
-<link href="{{ asset('css/pages.css')}}" rel="stylesheet">
 
-
-<!--end of page vendors -->
-@stop
 @section('content')
+<style>
+    .custom-control{
+        padding-left: 0px!important;
+    }
+</style>
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div aria-label="breadcrumb" class="card-breadcrumb">
-        <h1>My Profile</h1>
+        <!--<div class="container"> -->
 
-    </div>
-    <div class="separator-breadcrumb border-top"></div>
-</section>
-<!-- /.content -->
-<section class="content">
-    <div class="row">
-        <!-- document-->
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
-            <div class="card">
-                <div class="card-header bg-secondary text-white ">
-                    <h3 class="card-title d-inline">
-                        DOCUMENT UPLOAD
-                    </h3>
-                    <span class="float-right">
-                        <i class="fa fa-chevron-up clickable"></i>
-                    </span>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('admin.update_document')}}" method="post" enctype="multipart/form-data"  class="dropzone" id="dropzone">
-                        @csrf
-                        <input type="hidden"  name="userid" value={{$id}}>
-                        <!-- upload document -->
-                        <div class="form-group pad-top40">
+            <div class="row layout-top-spacing w-100">
+
+                <!-- <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing"> -->
+                    <div class="statbox widget box box-shadow w-100">
+                        
+                        <div class="widget-header">                                
                             <div class="row">
-                                <label for="inputUsername3" class="col-lg-12 control-label">
-                                    
-                                </label>
-                                <div class="col-md-9">
-                               
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Document Manager</h4>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="widget-content widget-content-area">
+                            <form  action="{{ route('admin.update_document')}}" method="post" enctype="multipart/form-data" class="dropzone" id="dropzone">
+                            @csrf
+                            <input type="hidden"  name="userid" value={{$id}}>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">
+                                   
+                                    </label>
+                                
+                                </div>
+                                
+                            </form>
+                            
+                        </div>
+                        
+                    </div>
+                <!-- </div> -->
+                
+           
             </div>
-        <div class="col-lg-1"></div>
-    </div>
-</section>
+
+           
+            
+        <!-- </div> -->
+    
 
 @stop
 @section('footer_scripts')
-<!--   page level js ----------->
-<script language="javascript" type="text/javascript" src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
-<!-- end of page level js -->
-
 <script type="text/javascript">
+
     $.ajaxSetup({
+
         headers: {
+
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
         }
+
     });
+
     Dropzone.options.dropzone =
+
         {
+
             maxFilesize: 12,
+
             renameFile: function (file) {
+
                 var dt = new Date();
+
                 var time = dt.getTime();
+
                 return time + file.name;
+
             },
+
             // acceptedFiles: ".jpeg,.jpg,.png,.gif",
+
 	        dictDefaultMessage: "<h5>Select files here to upload</h5> <br><span>( file type:image, pdf )</span>",
+
             addRemoveLinks: true,
+
             timeout: 50000,
+
             removedfile: function (file) {
+
                 var name = file.upload.filename;
+
                 $.ajax({
+
                     headers: {
+
                         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+
                     },
+
                     type: 'POST',
-                    url: '{{ route("admin.document_delete") }}',
-                    data: {
-                        filename: name,
-                        user_id: {{$id}}
-                        },
+
+                    url: '{{ route("document_delete") }}',
+
+                    data: {filename: name},
+
                     success: function (data) {
+
                         console.log("File has been successfully removed!!");
+
                     },
+
                     error: function (e) {
+
                         console.log(e);
+
                     }
+
                 });
+
                 var fileRef;
+
                 return (fileRef = file.previewElement) != null ?
+
                     fileRef.parentNode.removeChild(file.previewElement) : void 0;
+
             },
+
+
 
             success: function (file, response) {
+
                 // console.log(response);
+
             },
+
             error: function (file, response) {
+
                 return (ref = file.previewElement) != null ?
+
                     ref.removeChild(file.previewElement) : void 0;
+
                 // alert();
+
             }
+
         };
+
 </script>
+
 @stop

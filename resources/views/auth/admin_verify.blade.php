@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 signup-form">
-                            <img src="{{ asset('./login-pic.png')}}" class="img-responsive my-1 pt-3 mr-1" style="width:102%; height:87%;">
+                            <img src="{{ asset('img/images/two_auth.jpeg')}}" class="img-fluid my-1 pt-3 mr-1">
 			    <p style="text-align: end;font-style: italic;font-size: small;">Viktoria Kharlap, Athens, Greece</p>
                         </div>
                     </div>

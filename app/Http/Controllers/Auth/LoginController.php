@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 //use Illuminate\Support\Facades\Mail;
 use Mail;
 
@@ -73,15 +75,14 @@ class LoginController extends Controller
 
         $rand_no = rand(100000, 999999);
         
-         Mail::send([], [], function($message) use($rand_no) {
+        Mail::send([], [], function($message) use($rand_no) {
              $message->from('vendors@gymscanner.com', 'GYMSCANNER');
              $message->to(auth()->user()->email, auth()->user()->name)->subject('verification code')
-		 	->setBody("<head><meta http-equiv='Content-Language' content='en-us'>
+		 	        ->setBody("<head><meta http-equiv='Content-Language' content='en-us'>
                     <meta http-equiv='Content-Type' content='text/html; charset=windows-1252'>
                     </head>".$rand_no, 'text/html');
-         });
+        });
         $admin = User::where('id',auth()->user()->id)->first();
-        
         $admin->verify_code = $rand_no;
         $admin->save();
     }

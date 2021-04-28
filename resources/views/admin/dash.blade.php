@@ -1,242 +1,149 @@
 @extends('layouts.default')
-
 {{-- Page title --}}
-
 @section('title')
-
 Dashboard @parent
-
-@stop
-
-{{-- page level styles --}}
-
-@section('header_styles')
-
-<!-- page vendors -->
-
-<link href="{{ asset('css/pages.css')}}" rel="stylesheet">
-
-
-
-
-
-<!--end of page vendors -->
-
 @stop
 
 @section('content')
+<style>
+    .custom-control{
+        padding-left: 0px!important;
+    }
 
+    .component-card_7{
+        width:9rem;
+    }
+</style>
 
+        <!--<div class="container"> -->
 
-<!-- Content Header (Page header) -->
+            <div class="row layout-top-spacing w-100">
 
-<section class="content-header">
+                <!-- <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing"> -->
+                    <div class="statbox widget box box-shadow w-100">
+                        <div class="widget-header">                                
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Dashboard</h4>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="widget-content widget-content-area">
 
-    <div aria-label="breadcrumb" class="card-breadcrumb">
+                            <div class="row">
 
-        <h1>Dashboard</h1>
+                                <div class="col-lg-3">
 
+                                    <div class="card component-card_7">
+                                        <div class="card-body">
+                                            <h5 class="card-text">{{$num_gym}}</h5>
+                                            <h6 class="rating-count">Number of Gyms</h6>
+                                        </div>
+                                    </div>
 
+                                </div>
+                                <div class="col-lg-3">
 
-    </div>
+                                    <div class="card component-card_7">
+                                        <div class="card-body">
+                                            <h5 class="card-text">{{$num_tra}}</h5>
+                                            <h6 class="rating-count">Personal Trainers</h6>
+                                        </div>
+                                    </div>
 
-    <div class="separator-breadcrumb border-top"></div>
+                                </div>
+                                <div class="col-lg-3">
 
-</section>
+                                    <div class="card component-card_7">
+                                        <div class="card-body">
+                                            <h5 class="card-text">{{$num_touri}}</h5>
+                                            <h6 class="rating-count">Tourist Passes</h6>
+                                        </div>
+                                    </div>
 
-<!-- /.content -->
+                                </div>
+                                <div class="col-lg-3">
 
-<section class="content">
+                                    <div class="card component-card_7">
+                                        <div class="card-body">
+                                            <h5 class="card-text">{{$num_memship}}</h5>
+                                            <h6 class="rating-count">Membership Plans</h6>
+                                        </div>
+                                    </div>
 
-    <div class="row">
+                                </div>
 
-        <div class="col-md-6 col-xl-3 col-12 mb-20">
+                            </div>
 
-            <div class="  bg-white dashboard-col pl-15 pb-15 pt-15">
+                            <div class="table-responsive mt-3">
+                                <table class="table table-bordered mb-4">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Picture</th>
+                                            <th>Email Address</th>
+                                            <th>Web site</th>
+                                            <th>Role</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                <i class="im im-icon-Add-Cart im-icon-set float-right bg-primary"></i>
+                                        @foreach($users as $temp)
 
-                <h3>{{$num_gym}}</h3>
+                                        <tr>
+                                            <td>{{$temp->name}}</td>
 
-                <p>Number of Gyms</p>
+                                            @if($temp->avatar)
 
+                                            <td><img src="{{asset($temp->avatar)}}" alt="image missing"
+
+                                                    class="rounded-circle img-size"></td>
+
+                                            @else
+
+                                            <td><img src="{{asset('img/authors/user.jpg')}}" alt="image missing"
+
+                                                class="rounded-circle img-size"></td>
+
+                                            @endif
+
+                                             <td>{{$temp->email}}</td>
+
+                                            <td>{{$temp->website}}</td>
+
+                                            @if($temp->role == 2)
+
+                                            <td><span class="badge badge-success float-left">Gym</span></td>
+
+                                            @elseif($temp->role == 3) <td><span class="badge badge-danger float-left">Personal</span></td>
+
+                                            @else <td><span class="badge badge-primary float-left">Administrator</span></td>
+                    
+                                            @endif
+
+                                        </tr>
+                                        
+                                        @endforeach
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                <!-- </div> -->
+                
+           
             </div>
 
-        </div>
-
-
-
-        <div class="col-md-6 col-xl-3 col-12  mb-20">
-
-            <div class="bg-white dashboard-col pl-15 pb-15 pt-15">
-
-                <i class="im im-icon-Eye-Scan im-icon-set float-right bg-success"></i>
-
-                <h3>{{$num_tra}}</h3>
-
-                <p>Personal Trainers</p>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="col-md-6 col-xl-3 col-12  mb-20">
-
-            <div class="bg-white dashboard-col pl-15 pb-15 pt-15">
-
-                <i class="im im-icon-Love-User im-icon-set float-right bg-info"></i>
-
-                <h3>{{$num_touri}}</h3>
-
-                <p>Tourist Passes</p>
-
-            </div>
-
-        </div>
-
-
-
-
-
-        <div class="col-md-6 col-xl-3 col-12  mb-20">
-
-            <div class="bg-white dashboard-col pl-15 pb-15 pt-15">
-
-                <i class="im im-icon-Checked-User im-icon-set float-right bg-danger"></i>
-
-                <h3>{{$num_memship}}</h3>
-
-                <p>Membership Plans</p>
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-
-
-    <div class="row">
-
-        <div class="col-xl-12 col-12 mt-20 ">
-
-            <div class="bg-white dashboard-col">
-
-                <h5 class="card-header">New Registered Users</h5>
-
-                {{--<div class="card">--}}
-
-                <div class="table-responsive">
-
-                    <table class="table table-bordered">
-
-                        <thead>
-
-                            <tr>
-
-                                <th scope="col">Name</th>
-
-                                <th scope="col">Picture</th>
-
-                                <th scope="col">Email Address</th>
-
-                                <th scope="col">Web site</th>
-
-                                <th scope="col">Role</th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            @foreach($users as $temp)
-
-                            <tr>
-
-                                <td>{{$temp->name}}</td>
-
-                                @if($temp->avatar)
-
-                                <td><img src="{{asset($temp->avatar)}}" alt="image missing"
-
-                                        class="rounded-circle img-size"></td>
-
-                                @else
-
-                                <td><img src="{{asset('img/authors/user.jpg')}}" alt="image missing"
-
-                                    class="rounded-circle img-size"></td>
-
-                                @endif
-
-                                <td>{{$temp->email}}</td>
-
-                                <td>{{$temp->website}}</td>
-
-                                @if($temp->role == 2)
-
-                                <td><span class="badge badge-success float-left">Gym</span></td>
-
-                                @elseif($temp->role == 3) <td><span class="badge badge-danger float-left">Personal</span></td>
-
-				@else <td><span class="badge badge-primary float-left">Administrator</span></td>
-		
-                                @endif
-
-
-
-
-
-                            </tr>
-
-                            @endforeach
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-
-
-            </div>
-
-
-
-            {{--</div>--}}
-
-        </div>
-
-    </div>
-
-    {{--</div>--}}
-
-</section>
-
-
+           
+            
+        <!-- </div> -->
+    
 
 @stop
-
 @section('footer_scripts')
 
-<!--   page level js ----------->
-
-<script language="javascript" type="text/javascript" src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>
-
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
-
-
-
-<!-- end of page level js -->
-
 @stop
-
-
-

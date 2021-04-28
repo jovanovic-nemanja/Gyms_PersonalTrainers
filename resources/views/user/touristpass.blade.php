@@ -1,246 +1,108 @@
 @extends('layouts.default')
-
 {{-- Page title --}}
-
 @section('title')
-
-Dashboard @parent
-
-@stop
-
-{{-- page level styles --}}
-
-@section('header_styles')
-
-<!-- page vendors -->
-
-<link href="{{ asset('css/pages.css')}}" rel="stylesheet">
-
-
-
-
-
-<!--end of page vendors -->
-
+Tourist Pass @parent
 @stop
 
 @section('content')
+<style>
+    .custom-control{
+        padding-left: 0px!important;
+    }
+</style>
 
+        <!--<div class="container"> -->
 
+            <div class="row layout-top-spacing w-100">
 
-<!-- Content Header (Page header) -->
-
-<section class="content-header">
-
-    <div aria-label="breadcrumb" class="card-breadcrumb">
-
-        <h1>Create Gym Tourist Pass</h1>
-
-
-
-    </div>
-
-    <div class="separator-breadcrumb border-top"></div>
-
-</section>
-
-<!-- /.content -->
-
-<section class="content">
-
-    <div class="row">
-
-        <!-- membership-->
-
-        <div class="col-lg-1"></div>
-
-        <div class="col-lg-10">
-
-            <div class="card">
-
-                <div class="card-header bg-secondary text-white ">
-
-                    <h3 class="card-title d-inline">
-
-                        TOURIST PASS
-
-                    </h3>
-
-                    <span class="float-right">
-
-                        <i class="fa fa-chevron-up clickable"></i>
-
-                    </span>
-
-                </div>
-
-                <div class="card-body">
-
-                    <form action="{{ route('publish_tourist')}}" method="post" enctype="multipart/form-data">
-
-                        @csrf
-
-                        <div class="form-group">
-
+                <!-- <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing"> -->
+                    <div class="statbox widget box box-shadow w-100">
+                        <div class="widget-header">                                
                             <div class="row">
-
-                                <div class="col-lg-12">
-
-                                    <div class="row">
-
-                                        <div class="col-lg-4">
-
-                                            <h5 style="height:50px;">Price</h5>
-
-                                            <div class="input-group">
-
-                                                <span class="input-group-append">
-
-                                                    <span class="input-group-text">
-
-                                                        <i class="im im-icon-Dollar"></i></span>
-
-                                                </span>
-
-                                                <input type="text" class="form-control" placeholder="Example: US $10" id="inputUsername3" 
-
-                                                name="price" required>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-lg-4">
-
-                                            <h5 style="height:50px;">Duration</h5>
-
-                                            <div class="input-group">
-
-                                                <span class="input-group-append">
-
-                                                    <span class="input-group-text">
-
-                                                        <i class="im im-icon-Calendar-4"></i></span>
-
-                                                </span>
-
-                                                <input type="text" class="form-control" placeholder="Example: 1 day" id="inputUsername3" 
-
-                                                name="duration" required>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-lg-4">
-
-                                            <h5 style="height:50px;">Facility</h5>
-
-                                            <div class="input-group">
-
-                                                <span class="input-group-append">
-
-                                                    <span class="input-group-text">
-
-                                                        <i class="im im-icon-Dollar"></i></span>
-
-                                                </span>
-
-                                                <input type="text" class="form-control" placeholder="Full Access" id="inputUsername3" 
-
-                                                name="facility" required>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Create Gym Tourist Pass</h4>
                                 </div>
-
                             </div>
-
+                             @if (Session::get('success'))
+                  
+                                <div class="row">
+                                    <div class="col-md-12 mt-1">
+                                        
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ Session::get('success') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                            
+                                    </div>
+                                </div>
+                            
+                                @endif
                         </div>
-
-                        <div class="form-actions">
-
-                            <button type="submit" class="btn btn-sm btn-success">Publish</button>
-
-                        </div>
-
-                    </form>
-
-                    <div class="row">
-
-                        <?php $i = 0;?>
-
-                        @if($touristpass)
-
-                            @foreach($touristpass as $temp)
-
-                                <?php $i++;?>
-
-                                <div class="col-lg-3">
-
-                                    <h5 style="text-align:center;">Tourist Pass {{$i}}</h5>
-
-                                    
-
-                                    <p style="text-align:center; color:black;background-color:gray;"> Price:   {{$temp->price}}</p>
-
-                                    <p style="text-align:center;background-color:black;color:white;">Duration: {{$temp->duration}}</p>
-
-                                    <p style="text-align:center;background-color:lightblue;color:black;">Facility: {{$temp->facility}}</p>
-
-                                    <a href="{{ route('touristpass.delete',$temp->id)}}" style="color:black;">
-
-                                    <button type="button" class="btn btn-block btn-sm btn-warning">Delete</button></a>
-
+                       
+                        <div class="widget-content widget-content-area">
+                            <form  action="{{ route('publish_tourist')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Price</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example: US $10" name="price" required>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Duration</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput"  placeholder="Example: 1 day" name="duration" required>
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Facility</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Full Access" name="facility" required>
                                 </div>
 
-                                <div class="col-1"></div>
+                                <input type="submit" name="time" class="btn btn-primary" value="Publish">
+                                
+                            </form>
+                            <hr>
+                            <div class="row mt-3">
+                                <?php $i = 0;?>
+                                @if($touristpass)
+                                @foreach($touristpass as $temp)
+                                <?php $i++;?>
+                               <div class="col-xl-4 col-lg-6 col-sm-6 col-xs-12 mb-3">
+                                    
+                                    <div class="card component-card_1" style="width: 100%!important;">
+                                        <div class="card-body">
+                                            
+                                            <h5 class="card-title">Tourist Pass {{$i}}</h5>
+                                            <p style="text-align:center; color:black;background-color:gray;"> Price:   {{$temp->price}}</p>
 
-                            @endforeach
+                                            <p style="text-align:center;background-color:black;color:white;">Duration: {{$temp->duration}}</p>
 
-                        @endif
+                                            <p style="text-align:center;background-color:lightblue;color:black;">Facility: {{$temp->facility}}</p>
 
+                                            <a href="{{ route('touristpass.delete',$temp->id)}}" style="color:black;">
+
+                                            <button type="button" class="btn btn-block btn-sm btn-warning">Delete</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @endif
+                                
+                            </div>
+                        </div>
+                        
                     </div>
-
-                </div>
-
+                <!-- </div> -->
+                
+           
             </div>
 
-        <div class="col-lg-1"></div>
-
-    </div>
-
-</section>
-
-
+           
+            
+        <!-- </div> -->
+    
 
 @stop
-
 @section('footer_scripts')
 
-<!--   page level js ----------->
-
-<script language="javascript" type="text/javascript" src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>
-
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
-
-<script>
-
-    function avatar(){
-
-        alert("hello");
-
-        document.getElementById("avatar").click();
-
-    }
-
-</script>
-
-<!-- end of page level js -->
-
 @stop
-

@@ -18,7 +18,6 @@ include('web_builder.php');
 |
 */
 
-
 // Auth::routes();
 Auth::routes(['verify' => true]);
 
@@ -27,8 +26,19 @@ Auth::routes(['verify' => true]);
 })->middleware('auth'); */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('auth.register');
 });
+
+//mybrandroutes
+Route::post('myprofile/upload_brand_photos)', 'ProfileController@upload_brand_photos')->name('upload_brand_photos');
+Route::post('myprofile/brand_photos_delete)', 'ProfileController@brand_photos_delete')->name('brand_photos_delete');
+Route::post('myprofile/submit_brand_links)', 'ProfileController@submit_brand_links')->name('submit_brand_links');
+Route::post('myprofile/submit_brand_certificates)', 'ProfileController@submit_brand_certificates')->name('submit_brand_certificates');
+Route::get('myprofile/getBrandingData)', 'ProfileController@getBrandingData')->name('getBrandingData');
+Route::post('myprofile/delete_brand_photos)', 'ProfileController@delete_brand_photos')->name('delete_brand_photos');
+Route::post('myprofile/submit_brand_name)', 'ProfileController@submit_brand_name')->name('submit_brand_name');
+Route::post('myprofile/save_brand_info)', 'ProfileController@save_brand_info')->name('save_brand_info');
+Route::post('myprofile/submit_brand_image)', 'ProfileController@submit_brand_image')->name('submit_brand_image');
 
 // Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
 // Route::resource('users', 'UsersController');
@@ -47,7 +57,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     $request->fulfill();
 
     return redirect('/thank-you');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+})->middleware(['auth'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
@@ -80,9 +90,22 @@ Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middlewar
 
         });
 
+
+
+          
+
+
+
+
+
         Route::group(['middleware' => 'admin'], function () {
             //admin
             // Route::get('admin', 'AdminController@handleAdmin')->name('admin.index')->middleware('admin');
+          
+          Route::get('admin/user_view/{id}', 'AdminController@user_view')->name('admin.user_view');
+          Route::get('admin/user_personal_view/{id}', 'AdminController@user_personal_view')->name('admin.user_personal_view');
+
+
             Route::get('admin/verify', 'AdminController@verify')->name('admin.verify');
 
             Route::post('admin/confirm', 'AdminController@confirm')->name('admin_confirm');
@@ -121,9 +144,13 @@ Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middlewar
             });
         });
 
+        Route::get('contact_us','ProfileController@contact_us')->name('profile.contact_us');
+        Route::post('contact_us','ProfileController@contact_us_mail')->name('profile.contact_us_mail');
+        
         Route::group(['middleware' => 'trainer'], function () {
             //personal trainer
             Route::get('personal_myprofile', 'PersonalController@index')->name('personal_myprofile');
+            
             //avatar
             Route::post('personal_profile/avatar', 'PersonalController@avatar')->name('personal_avatar');
             Route::get('personal_profile/changepass', 'PersonalController@change_pass')->name('personal_profile.changepass');
@@ -133,6 +160,12 @@ Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middlewar
             //membership
             Route::get('personal_membership', 'PersonalController@personal_membership_index')->name('personal_membership.index');
             Route::post('personal_profile/membership', 'PersonalController@personal_membership')->name('personal_membership');
+            Route::get('personal_membership/edit/{id}', 'PersonalController@personal_membership_edit')->name('personal_membership.edit');
+
+            //added by Nemanja
+            Route::get('personal_membership/getPlaninfor', 'PersonalController@getPersonal_membership')->name('personal_membership.getPersonal_membership');
+
+            Route::post('personal_membership/update_personal_membership', 'PersonalController@update_personal_membership')->name('update_personal_membership');
             Route::get('personal_profile/membership/delete/{id}', 'PersonalController@personal_membership_del')->name('personal_membership.delete');
             //banner
             Route::post('personal_profile/banner', 'PersonalController@banner')->name('personal_banner');
@@ -141,7 +174,10 @@ Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middlewar
             Route::get('personal_profile/bank', 'PersonalController@bank')->name('personal_profile.bank');
             Route::post('personal_profile/bank', 'PersonalController@bank_update')->name('personal_profile.bank.update');
             Route::get('personal_profile/bank_delete/{id}', 'PersonalController@bank_delete')->name('personal_profile.bank.delete');
-        
+
+             //my branding
+            Route::get('personal_myprofile/my_branding', 'PersonalController@my_branding')->name('personal_myprofile.my_branding');
+
         });
 
         
@@ -150,6 +186,8 @@ Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middlewar
         //membership
         Route::get('membership', 'ProfileController@membership_index')->name('membership.index');
         Route::post('profile/membership', 'ProfileController@membership')->name('membership');
+        Route::get('profile/membership/edit/{id}', 'ProfileController@membership_edit')->name('membership.edit');
+        Route::post('profile/membership_update', 'ProfileController@membership_update')->name('membership_update');
         Route::get('profile/membership/delete/{id}', 'ProfileController@membership_del')->name('membership.delete');
         //bank
         Route::get('myprofile/bank', 'ProfileController@bank')->name('myprofile.bank');
@@ -162,6 +200,10 @@ Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middlewar
 
         Route::get('myprofile/sumbit_admin','ProfileController@submit_admin')->name('myprofile.sumbit_admin');
         Route::get('profile/send_notification_admin', 'ProfileController@send_notification_admin')->name('send_notification_admin');
+
+
+        //approve_complete_profile
+        Route::post('profile/approve_complete_profile', 'ProfileController@approve_complete_profile')->name('profilecontroller.approve_complete_profile');
 
         //edit end
         // Route::get('builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
@@ -181,5 +223,18 @@ Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middlewar
     // });
 // });
 // });
- 
-// Route::get('{name?}', 'JoshController@showView');
+
+Route::get('/route-cache', function() {
+     Artisan::call('cache:clear');
+    echo '<h1>Cache facade value cleared</h1>';
+
+    Artisan::call('route:clear');
+    echo '<h1>Route c1ache cleared</h1>';
+
+    Artisan::call('view:clear');
+    echo '<h1>View cache cleared</h1>';
+
+    Artisan::call('config:cache');
+    return '<h1>Clear Config cleared</h1>';
+
+ });

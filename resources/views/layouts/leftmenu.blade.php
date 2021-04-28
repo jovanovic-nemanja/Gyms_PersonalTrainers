@@ -95,7 +95,7 @@
             </a>
         </li>
         <li {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-            <a href="{{ route('myprofile.personal_profile.bank') }}">
+            <a href="{{ route('personal_profile.bank') }}">
                 <span class="mm-text ">BANK ACCOUNT</span>
                 <span class="menu-icon"><i class="im im-icon-Bank"></i></span>
             </a>

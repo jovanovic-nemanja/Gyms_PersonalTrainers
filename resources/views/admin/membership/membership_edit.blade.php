@@ -1,148 +1,87 @@
 @extends('layouts.default')
 {{-- Page title --}}
 @section('title')
-Dashboard @parent
+Membership Manager @parent
 @stop
-{{-- page level styles --}}
-@section('header_styles')
-<!-- page vendors -->
-<link href="{{ asset('css/pages.css')}}" rel="stylesheet">
 
-
-<!--end of page vendors -->
-@stop
 @section('content')
+<style>
+    .custom-control{
+        padding-left: 0px!important;
+    }
+</style>
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div aria-label="breadcrumb" class="card-breadcrumb">
-        <h1>My Profile</h1>
+        <!--<div class="container"> -->
 
-    </div>
-    <div class="separator-breadcrumb border-top"></div>
-</section>
-<!-- /.content -->
-<section class="content">
-    <div class="row">
-        <!-- membership-->
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
-            <div class="card">
-                <div class="card-header bg-secondary text-white ">
-                    <h3 class="card-title d-inline">
-                       MEMBERSHIP
-                    </h3>
-                    <span class="float-right">
-                        <i class="fa fa-chevron-up clickable"></i>
-                    </span>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('admin.update_membership')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
+            <div class="row layout-top-spacing w-100">
+
+                <!-- <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing"> -->
+                    <div class="statbox widget box box-shadow w-100">
+                        <div class="widget-header">                                
                             <div class="row">
-                                <div class="col-lg-10">
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <h5 style="height:50px;">Price</h5>
-                                            <div class="input-group">
-                                                <span class="input-group-append">
-                                                    <span class="input-group-text">
-                                                        <i class="im im-icon-Dollar"></i></span>
-                                                </span>
-                                                <input type="hidden" class="form-control" id="inputUsername3"  name="userid" value={{$id}}>
-                                                <input type="text" class="form-control" placeholder="Price" id="inputUsername3" 
-                                                name="price" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <h5 style="height:50px;">Duration</h5>
-                                            <div class="input-group">
-                                                <span class="input-group-append">
-                                                    <span class="input-group-text">
-                                                        <i class="im im-icon-Calendar-4"></i></span>
-                                                </span>
-                                                <input type="text" class="form-control" placeholder="Duration" id="inputUsername3" 
-                                                name="duration" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <h5 style="height:50px;">Service</h5>
-                                            <div class="input-group">
-                                                <span class="input-group-append">
-                                                    <span class="input-group-text">
-                                                        <i class="im im-icon-Dollar"></i></span>
-                                                </span>
-                                                <input type="text" class="form-control" placeholder="Service" id="inputUsername3" 
-                                                name="service" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <h5 style="height:50px;">Additional Perk</h5>
-                                            <div class="input-group">
-                                                <span class="input-group-append">
-                                                    <span class="input-group-text">
-                                                        <i class="im im-icon-Trophy"></i></span>
-                                                </span>
-                                                <input type="text" class="form-control" placeholder="Additional Perk" id="perk" 
-                                                name="perk" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                                <div class="col-lg-2">
-                                    <h5 style="height:50px;">App Exclusive</h5>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="incustomCheck19" name="app" value="app">
-                                        <label class="custom-control-label" for="incustomCheck19">App</label>
-                                    </div>
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Edit Membership Plan</h4>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-sm btn-primary">Publish Offer</button>
-                        </div>
-                    </form>
-                    <div class="row">
-                        <?php $i = 0;?>
-                        @if($membership)
-                            @foreach($membership as $temp)
-                                <?php $i++;?>
-                                <div class="col-lg-3">
-                                    @if($temp->app=="app")
-                                        <?php $i--;?>
-                                        <h5 style="text-align:center;">App exclusive</h5>
-                                    @else
-                                        <h5 style="text-align:center;">PLAN {{$i}}</h5>
-                                    @endif
-                                    <p style="text-align:center; color:black;background-color:gray;"> Price:   {{$temp->price}}</p>
-                                    <p style="text-align:center;background-color:black;color:white;">Duration: {{$temp->duration}}</p>
-                                    <p style="text-align:center;background-color:lightblue;color:black;">Service: {{$temp->service}}</p>
-                                    <p style="text-align:center;background-color:lightgreen;color:black;">Additional Perk: {{$temp->perk}}</p>
-                                    <a href="{{ route('admin.membership_delete',$temp->id)}}" style="color:black;">
-                                    <button type="button" class="btn btn-block btn-sm btn-warning">Delete</button></a>
+                       
+                        <div class="widget-content widget-content-area">
+                            <form  action="{{ route('admin.update_membership')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                             <input type="hidden" class="form-control" id="inputUsername3"  name="userid" value={{$id}}>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Price</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Price" name="price" required>
                                 </div>
-                                <div class="col-1"></div>
-                            @endforeach
-                        @endif
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Duration</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Duration" name="duration" required>
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Service</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Service" name="service" required>
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Additional Perk</label>
+                                    <textarea class="form-control" name="perk" placeholder="Additional Perk" rows="3" required></textarea>
+                                </div>
+                               
+                                <div class="custom-control custom-checkbox">
+                                    
+                                    <div class="row">
+                                       
+                                        <div class="col-lg-12">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="app" value="app">
+                                                <span class="new-control-indicator"></span> App Exclusive
+                                            </label>
+                                        </div>                                          
+                                        
+                                    </div>                                
+                                    
+
+                                </div>
+
+                                <input type="submit" name="time" class="btn btn-primary" value="Publish Offer">
+                                
+                            </form>
+                            
+                        </div>
+                        
                     </div>
-                </div>
+                <!-- </div> -->
+                
+           
             </div>
-        <div class="col-lg-1"></div>
-    </div>
-</section>
+
+           
+            
+        <!-- </div> -->
+    
 
 @stop
 @section('footer_scripts')
-<!--   page level js ----------->
-<script language="javascript" type="text/javascript" src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
-<script>
-    function avatar(){
-        alert("hello");
-        document.getElementById("avatar").click();
-    }
-</script>
-<!-- end of page level js -->
+
 @stop

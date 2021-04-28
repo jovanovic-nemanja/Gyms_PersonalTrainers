@@ -1,94 +1,43 @@
-
 @extends('layouts.default')
-
 {{-- Page title --}}
-
 @section('title')
-
-Dashboard @parent
-
-@stop
-
-{{-- page level styles --}}
-
-@section('header_styles')
-
-<!-- page vendors -->
-
-<link href="{{ asset('css/pages.css')}}" rel="stylesheet">
-
-
-
-
-
-<!--end of page vendors -->
-
+Documents @parent
 @stop
 
 @section('content')
+<style>
+    .custom-control{
+        padding-left: 0px!important;
+    }
+    .dropzone{
+        border: 2px dotted rgba(0,0,0,0.3);
+        background: #fafafa!important;
+    }
+    .dropzone .dz-message 
+    {
+        margin:0px!important;
+    }
+</style>
 
+        <!--<div class="container"> -->
 
+            <div class="row layout-top-spacing w-100">
 
-<!-- Content Header (Page header) -->
-
-<section class="content-header">
-
-    <div aria-label="breadcrumb" class="card-breadcrumb">
-
-        <h1>My Profile</h1>
-
-
-
-    </div>
-
-    <div class="separator-breadcrumb border-top"></div>
-
-</section>
-
-<!-- /.content -->
-
-<section class="content">
-
-    <div class="row">
-
-        <!-- document-->
-
-        <div class="col-lg-1"></div>
-
-        <div class="col-lg-10">
-
-            <div class="card">
-
-                <div class="card-header bg-secondary text-white ">
-
-                    <h3 class="card-title d-inline">
-
-                        DOCUMENT UPLOAD
-
-                    </h3>
-
-                    <span class="float-right">
-
-                        <i class="fa fa-chevron-up clickable"></i>
-
-                    </span>
-
-                </div>
-
-                <div class="card-body">
-
-                    <form action="{{ route('upload_document')}}" method="post" enctype="multipart/form-data"  class="dropzone" id="dropzone">
-
-                        @csrf
-
-                        <!-- upload document -->
-
-                        <div class="form-group pad-top40">
-
+                <!-- <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing"> -->
+                    <div class="statbox widget box box-shadow w-100">
+                       
+                        <div class="widget-header">                                
                             <div class="row">
-
-                                <label for="inputUsername3" class="col-lg-12 control-label">
-
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4 style="font-size: 26px;color: #393939;font-weight: 600;font-family: "Nunito";">Document Upload</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content widget-content-area">
+                            <form  action="{{ route('upload_document')}}" method="post" enctype="multipart/form-data" class="dropzone" id="dropzone">
+                            @csrf
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">
                                     @if(auth()->user()->role==2)
 
                                         Please upload your Gym License :
@@ -98,50 +47,27 @@ Dashboard @parent
                                         Please upload your Personal ID :
 
                                     @endif
-
-				<a href="{{($document)?URL::asset('upload/documents/'.$document->document_path):''}}" target="_blank">{{($document)?$document->document_path:'No document uploaded'}}</a>
-
-                                </label>
-				
-
-                                <div class="col-md-9">
-
-                               
-
+                                    </label>
+                                     <!--<a href="{{($document)?URL::asset('upload/documents/'.$document->document_path):''}}" target="_blank">{{($document)?$document->document_path:'No document uploaded'}}</a>-->
                                 </div>
-
-                            </div>
-
+                                
+                            </form>
+                            
                         </div>
+                        
+                    </div>
+                <!-- </div> -->
+                
+           
+            
 
-                    </form>
-
-                </div>
-
-            </div>
-
-        <div class="col-lg-1"></div>
-
-    </div>
-
-</section>
-
-
+           
+            
+        <!-- </div> -->
+    
 
 @stop
-
 @section('footer_scripts')
-
-<!--   page level js ----------->
-
-<script language="javascript" type="text/javascript" src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>
-
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
-
-<!-- end of page level js -->
-
-
-
 <script type="text/javascript">
 
     $.ajaxSetup({
@@ -172,7 +98,7 @@ Dashboard @parent
 
             // acceptedFiles: ".jpeg,.jpg,.png,.gif",
 
-	        dictDefaultMessage: "<h5>Select files here to upload</h5> <br><span>( file type:image, pdf )</span>",
+	        dictDefaultMessage: "<i class='far fa-image' style='font-size: 50px;margin-bottom: 15px;color: #393939;font-weight: 600;font-family: 'Nunito';'></i><h5 style='font-size: 26px;color: #393939;font-weight: 600;font-family: 'Nunito';'>Select files here to upload</h5> <br><span>( File type: PDF,PNG,JPG,JPEG )</span>",
 
             addRemoveLinks: true,
 
@@ -241,4 +167,3 @@ Dashboard @parent
 </script>
 
 @stop
-

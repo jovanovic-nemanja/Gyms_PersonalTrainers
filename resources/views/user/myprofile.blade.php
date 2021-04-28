@@ -1,100 +1,158 @@
 @extends('layouts.default')
 {{-- Page title --}}
 @section('title')
-Dashboard @parent
+MyProfile @parent
 @stop
-{{-- page level styles --}}
-@section('header_styles')
-<!-- page vendors -->
-<link href="{{ asset('css/pages.css')}}" rel="stylesheet">
-<link href="{{ asset('vendors/toastr/css/toastr.css') }}"  rel="stylesheet" type="text/css" />
 
-
-<!--end of page vendors -->
-@stop
 @section('content')
+<style>
+    .custom-control{
+        padding-left: 0px!important;
+    }
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div aria-label="breadcrumb" class="card-breadcrumb">
-        <h1>My Profile</h1>
-    </div>
-    <div class="separator-breadcrumb border-top"></div>
-</section>
-<!-- /.content -->
-<section class="content">
-    <div class="row">
+::placeholder {
+  color: grey !important;
+  opacity: 0.5 !important;
+}
 
-        <!-- avatar -->
-        <div class="col-lg-2 col-md-4"></div>
-        <div class="col-lg-8 col-md-16">
-            <form action="{{ route('avatar')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="picture-container">
-                    <div class="picture">
-                        
-                        @if($avatar)
-                            <img src="{{ asset($avatar->avatar)}}" class="picture-src" id="wizardPicturePreview" title="">
-                        @else
-                        @endif
-                        <input type="file" id="wizard-picture" name="avatar"  accept="image/*">
-                    </div>
-                    <h6 class="">Logo ( 512px*512px )</h6>
-                </div>
-                <button type="submit" style="top:-300px; position:absolute" id="avatar" ></button>
-            </form>
-        </div>
-        <div class="col-lg-2 col-md-4"></div>
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: grey !important;
+   opacity: 0.5 !important;   
+}
 
-        <!-- company information -->
-        <div class="col-lg-2 col-md-4"></div>
-        <div class="col-lg-8 col-md-16">
-            <div class="card">
-                <div class="card-header bg-secondary text-white ">
-                    <h3 class="card-title d-inline">
-                        Company Information
-                    </h3>
-                    <span class="float-right">
-                        <i class="fa fa-chevron-up clickable"></i>
-                    </span>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('company')}}" method="post" enctype="multipart/form-data" class="dropzone" id="dropzone">
-                        @csrf
-                        <div class="form-body">
-                            <!-- gym name -->
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       GYM Name
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-Add-User"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Username" id="gym_name" 
-                                            name="company_name" value="{{($company_data)?$company_data->company_name:''}}" required>
-                                        </div>
-                                    </div>
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: grey !important;
+    opacity: 0.5 !important;
+}
+
+
+</style>
+        <!--<div class="container"> -->
+
+            <div class="row layout-top-spacing w-100">
+
+                <!-- <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing"> -->
+                    <div class="statbox widget box box-shadow w-100">
+                        <div class="widget-header">                                
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>My Profile</h4>
                                 </div>
                             </div>
-                            <!-- country -->
-                            <div class="form-group">
+                                
+                                @if (Session::get('danger'))
+                  
                                 <div class="row">
-                                    <label for="inputAddress4" class="col-md-3 control-label">
-                                        Country
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Globe"></i>
-                                                </span>
-                                            </span>
-                                        <select class="browser-default custom-select" name="country" style="height:40px;">
-                                            <option value="not" class="hidden defaultText">Country</option>
+                                    <div class="col-md-12 mt-1">
+                                        
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ Session::get('danger') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                            
+                                    </div>
+                                </div>
+                            
+                                @endif
+                                @if (Session::get('success_img'))
+                  
+                                <div class="row">
+                                    <div class="col-md-12 mt-1">
+                                        
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ Session::get('success_img') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                            
+                                    </div>
+                                </div>
+                            
+                                @endif
+                                
+                        </div>
+                        <div class="widget-content widget-content-area">
+                            
+                            <form action="{{ route('avatar')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                    <div class="custom-file-container" data-upload-id="myFirstImage">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label>Logo ( 300px*300px )</label>
+                                                <label class="custom-file-container__custom-file" >
+                                                    <input type="file" id="rr" class="custom-file-container__custom-file__custom-file-input" name="avatar" accept="image/*">
+                                                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                                    <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                                </label>
+                                                <button type="submit" class="btn btn-primary mt-5" id="avatar" >Upload Profile Image</button>
+                                                <a href="javascript:void(0)"  class="custom-file-container__image-clear" title="Clear Image"><button type="button" class="btn btn-danger mt-5">Remove</button></a>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                @if($avatar)
+                                                <div class="row" id="ddd" style="margin-top:50px;margin-left:10px;">
+                                                    <div class="col-sm-3"> 
+                                                    </div>
+                                                    <div class="col-sm-6">                
+                                                    <img class="img-thumbnail" style="max-height: 125px;background-repeat: no-repeat;" src="{{ asset($avatar->avatar) }}"  >
+                                                    </div>
+                                                    <div class="col-sm-3"> 
+                                                    </div> 
+                                                </div>    
+                                                
+                                                <div  class="custom-file-container__image-preview" id="hh" style="max-height: 125px;">
+                                                    
+                                                </div>
+                                                @else
+                                                <div class="custom-file-container__image-preview" style="max-height: 125px;">
+                                                    
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                      
+                                    </div>                                        
+                            </form>
+                        </div>
+                    </div>
+                    <div class="statbox widget box box-shadow w-100 mt-6">    
+                        <div class="widget-header">                                
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Company Information </h4>
+                                </div>
+                            </div>
+                             @if (Session::get('success'))
+                  
+                                <div class="row">
+                                    <div class="col-md-12 mt-1">
+                                        
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ Session::get('success') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                            
+                                    </div>
+                                </div>
+                            
+                                @endif
+                        </div>
+                        <form  action="{{ route('company')}}" method="post" enctype="multipart/form-data" class="dropzone" id="dropzone">
+                            @csrf
+                            <div class="widget-content widget-content-area">
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Gym Name</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Username"  name="company_name" value="{{($company_data)?$company_data->company_name:''}}" required>
+                                    <input type="hidden" id="country_code" value="{{@$company_data->country}}">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlSelect1">Country</label>
+                                    <select class="form-control" name="country"  id="exampleFormControlSelect1">
+                                        <option value="not" class="hidden defaultText">Country</option>
                                             <option value="ax">    Aaland Islands                          </option>
                                             <option value="af">    Afghanistan                          </option>
                                             <option value="al">    Albania                          </option>
@@ -338,586 +396,462 @@ Dashboard @parent
                                             <option value="ye">    Yemen                          </option>
                                             <option value="zm">    Zambia                          </option>
                                             <option value="zw">    Zimbabwe                          </option>
-                                        </select>
-                                        </div>
-                                    </div>
+                                    </select>
                                 </div>
-                            </div>
-                            <!-- location -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="inputAddress4" class="col-md-3 control-label">
-                                        Location
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Location-2"></i>
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" id="inputAddress4"
-                                                placeholder=" Address" name="address" value="{{($company_data)?$company_data->address:''}}" required>
-                                        </div>
-                                    </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Location</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Address"  name="address" value="{{($company_data)?$company_data->address:''}}" required>
                                 </div>
-                            </div>
-                            <!-- email -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="inputAddress4" class="col-md-3 control-label">
-                                        Email
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Email"></i>
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" id="inputAddress4"
-                                                placeholder=" Email" name="email" value="{{($company_data)?$company_data->email:''}}" required>
-                                        </div>
-                                    </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Email</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput"  placeholder=" Email" name="email" value="{{($company_data)?$company_data->email:''}}" required>
                                 </div>
-                            </div>
-                            <!-- website -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="inputAddress4" class="col-md-3 control-label">
-                                        WEBSITE
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Computer"></i>
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" id="inputAddress4"
-                                            placeholder="Website" name="website" value="{{($company_data)?$company_data->website:''}}">
-                                        </div>
-                                    </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Website</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput"  placeholder="Website" name="website" value="{{($company_data)?$company_data->website:''}}">
                                 </div>
-                            </div>
-                            <!-- CONTACT PERSON -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="inputAddress4" class="col-md-3 control-label">
-                                        CONTACT PERSON
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Address-Book"></i>
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" id="inputAddress4"
-                                            placeholder="Contact Person" name="about" value="{{($company_data)?$company_data->contact:''}}" required>
-                                        </div>
-                                    </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Contact Person</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput"   placeholder="Contact Person" name="about" value="{{($company_data)?$company_data->contact:''}}" required>
                                 </div>
-                            </div>
-                            <!-- mobile -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="inputnumber3" class="col-md-3 control-label">
-                                        MOBILE
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Phone-Wifi"></i>
-                                                </span>
-                                            </span>
-                                            <input type="text" placeholder="Phone Number" class="form-control"
-                                                id="inputnumber3" name="phone_number" value="{{($company_data)?$company_data->phone_number:''}}" required/>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Mobile Number</label>
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                                <input type="hidden" name="phone_number_country" value="{{($company_data)?$company_data->phone_number_country:''}}">
+                                              <select class="form-control" name="phone_number_code" id="exampleFormControlSelect1" required>
+                                                <option value="">select country code</option>
+                                                @foreach($country_array as $code => $country):
+
+                                                    <?php $countryName = ucwords(strtolower($country["name"])); ?>
+		                                            
+                                                    <option value="{{ $country['code'] }}" data="{{ $countryName }}" {{($company_data)?(($company_data->phone_number_country==$countryName)?'selected':''):''}}>{{ $countryName }} </option>
+                                                
+                                                @endforeach
+
+                                              </select>
+                                                
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- gym info -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-md-3 col-lg-3 col-12 control-label" for="message1">GYM Info</label>
-                                    <div class="col-md-9 col-lg-9 col-12">
-                                        <textarea class="form-control resize_vertical" id="message1" name="message" placeholder="Please enter your message here..." rows="5" required>{{($company_data)?$company_data->message:''}}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Gym select -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-3"><label>DESCRIPTION OF GYM FACILITIES</label></div>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck20" name="Bodybuilding" value="Bodybuilding"
-                                                    {{($company_data)?(($company_data->Bodybuilding=="Bodybuilding")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck20">Bodybuilding</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck21" name="Bootcamp" value="Bootcamp"
-                                                    {{($company_data)?(($company_data->Bootcamp=="Bootcamp")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck21">Bootcamp</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck22" name="boxing" value="Boxing"
-                                                    {{($company_data)?(($company_data->boxing=="Boxing")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck22">Boxing</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck23" name="crosstraing" value="Crosstraing"
-                                                    {{($company_data)?(($company_data->crosstraing=="Crosstraing")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck23">Cross training</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck24" name="EMS" value="EMS"
-                                                    {{($company_data)?(($company_data->EMS=="EMS")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck24">EMS</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck25" name="Gym" value="Gym"
-                                                    {{($company_data)?(($company_data->Gym=="Gym")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck25">Gym</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck26" name="Gymnastics" value="Gymnastics"
-                                                    {{($company_data)?(($company_data->Gymnastics=="Gymnastics")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck26">Gymnastics</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck13" name="karate" value="Karate"
-                                                    {{($company_data)?(($company_data->karate=="Karate")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck13">Karate</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck27" name="KickBoxing" value="KickBoxing"
-                                                    {{($company_data)?(($company_data->KickBoxing=="KickBoxing")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck27">Kick Boxing</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck28" name="MartialArts" value="MartialArts"
-                                                    {{($company_data)?(($company_data->MartialArts=="MartialArts")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck28">Martial Arts</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck11" name="mma" value="MMA"
-                                                    {{($company_data)?(($company_data->mma=="MMA")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck11">MMA</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck29" name="PersonalFitness" value="PersonalFitness"
-                                                    {{($company_data)?(($company_data->PersonalFitness=="PersonalFitness")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck29">Personal Fitness</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck10" name="pilates" value="Pilates"
-                                                    {{($company_data)?(($company_data->pilates=="Pilates")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck10">Pilates</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck30" name="Spinning" value="Spinning"
-                                                    {{($company_data)?(($company_data->Spinning=="Spinning")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck30">Spinning</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck" name="weightlift" value="WeightLefting"
-                                                    {{($company_data)?(($company_data->weightlift=="WeightLefting")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck">Weightlifting</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck9" name="yoga" value="Yoga"
-                                                    {{($company_data)?(($company_data->yoga=="Yoga")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck9">Yoga</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr><br>
-                            <!-- working hours -->
-                            <div class="form-group pad-top40">
-                                <div class="row" >
-                                    
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                        WORKING HOURS<br>
-                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input type="checkbox" onclick="working(this)" class="custom-control-input" id="incustomCheck15" name="all_check" value="all"
-                                            {{($company_data)?(($company_data->all_check=="all") ? "checked":""):''}} >
-                                            <label class="custom-control-label" for="incustomCheck15">Open 24x7</label>
-                                        </div>
-                                    </label>
+                                        <div class="col-lg-9">
                                         
-                                    <div class="col-md-9">
-                                        <div class="row" id="working">
-                                            <!-- monday -->
-                                            <?php if($company_data){ $week = json_decode($company_data->week_date);}?>
-                                            <div class="col-md-2">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck1" name="week_date[]" value="Monday"
-                                                    {{ ($company_data)?(($company_data->week_date && in_array("Monday",json_decode($company_data->week_date))) ? "checked":""):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck1">Mon</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
-                                                    name="mon_from" value="{{($company_data)?$company_data->mon_from:''}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
-                                                    name="mon_to" value="{{($company_data)?$company_data->mon_to:''}}">
-                                                </div>
-                                            </div>
-                                            <!-- tuesday -->
-                                            <div class="col-md-2">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck2" name="week_date[]" value="Tuesday"
-                                                    {{ ($company_data)?(($company_data->week_date && in_array("Tuesday",json_decode($company_data->week_date))) ? "checked":""):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck2">Tue</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
-                                                    name="tue_from" value="{{($company_data)?$company_data->tue_from:''}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
-                                                    name="tue_to" value="{{($company_data)?$company_data->tue_to:''}}">
-                                                </div>
-                                            </div>
-                                            <!-- wednesday -->
-                                            <div class="col-md-2">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck3" name="week_date[]" value="Wednesday"
-                                                    {{ ($company_data)?(($company_data->week_date && in_array("Wednesday",json_decode($company_data->week_date))) ? "checked":""):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck3">Wed</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
-                                                    name="wed_from" value="{{($company_data)?$company_data->wed_from:''}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
-                                                    name="wed_to" value="{{($company_data)?$company_data->wed_to:''}}">
-                                                </div>
-                                            </div>
-                                            <!-- thursday -->
-                                            <div class="col-md-2">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck4" name="week_date[]" value="Thursday"
-                                                    {{ ($company_data)?(($company_data->week_date && in_array("Thursday",json_decode($company_data->week_date))) ? "checked":""):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck4">Thu</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
-                                                    name="thu_from" value="{{($company_data)?$company_data->thu_from:''}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
-                                                    name="thu_to" value="{{($company_data)?$company_data->thu_to:''}}">
-                                                </div>
-                                            </div>
-                                            <!-- friday -->
-                                            <div class="col-md-2">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck5" name="week_date[]" value="Friday"
-                                                    {{ ($company_data)?(($company_data->week_date && in_array("Friday",json_decode($company_data->week_date))) ? "checked":""):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck5">Fri</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
-                                                    name="fri_from" value="{{($company_data)?$company_data->fri_from:''}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
-                                                    name="fri_to" value="{{($company_data)?$company_data->fri_to:''}}">
-                                                </div>
-                                            </div>
-                                            <!-- saturday -->
-                                            <div class="col-md-2">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck6" name="week_date[]" value="Saturday"
-                                                    {{ ($company_data)?(($company_data->week_date && in_array("Saturday",json_decode($company_data->week_date))) ? "checked":""):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck6">Sat</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
-                                                    name="sat_from" value="{{($company_data)?$company_data->sat_from:''}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
-                                                    name="sat_to" value="{{($company_data)?$company_data->sat_to:''}}">
-                                                </div>
-                                            </div>
-                                            <!-- sunday -->
-                                            <div class="col-md-2">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck7" name="week_date[]" value="Sunday"
-                                                    {{ ($company_data)?(($company_data->week_date && in_array("Sunday",json_decode($company_data->week_date))) ? "checked":""):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck7">Sun</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
-                                                    name="sun_from" value="{{($company_data)?$company_data->sun_from:''}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-append">
-                                                        <span class="input-group-text">
-                                                        <i class="im im-icon-Clock"></i></span>
-                                                    </span>
-                                                    <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
-                                                    name="sun_to" value="{{($company_data)?$company_data->sun_to:''}}">
-                                                </div>
-                                            </div>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" 
+                                                placeholder="Phone Number" class="form-control"
+                                                id="inputnumber3" name="phone_number" value="{{($company_data)?$company_data->phone_number:''}}" required/>
+                                                
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <!-- social link -->
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Network
-                                    </label>
-                                    <div class="col-md-9">
-                                        <label for="inputUsername3" >
-                                        Account Link
-                                        </label>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlTextarea1">GYM Info</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" placeholder="Please enter your message here..." rows="5" required>{{($company_data)?$company_data->message:''}}</textarea>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlTextarea1">I can train in:</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    
+                                    <div class="row">
+                                       
+                                        
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="Bodybuilding" value="Bodybuilding"
+                                            {{($company_data)?(($company_data->Bodybuilding=="Bodybuilding")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Bodybuilding
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="Bootcamp" value="Bootcamp"
+                                                {{($company_data)?(($company_data->Bootcamp=="Bootcamp")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Bootcamp
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="boxing" value="Boxing" {{($company_data)?(($company_data->boxing=="Boxing")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Boxing
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="crosstraing" value="Crosstraing" {{($company_data)?(($company_data->crosstraing=="Crosstraing")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Cross training
+                                            </label>
+                                            
+                                            
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="EMS" value="EMS" {{($company_data)?(($company_data->EMS=="EMS")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>EMS
+                                            </label>
+                                            
+                                            
+                                        </div>
+                                        <div class="col-lg-4">
+                                            
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="Gym" value="Gym" {{($company_data)?(($company_data->Gym=="Gym")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Gym
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="col-lg-4">
+
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="Gymnastics" value="Gymnastics" {{($company_data)?(($company_data->Gymnastics=="Gymnastics")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Gymnastics
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="karate" value="Karate" {{($company_data)?(($company_data->karate=="Karate")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Karate
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="KickBoxing" value="KickBoxing" {{($company_data)?(($company_data->KickBoxing=="KickBoxing")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Kick Boxing
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                        <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="MartialArts" value="MartialArts" {{($company_data)?(($company_data->MartialArts=="MartialArts")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Martial Arts
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="mma" value="MMA" {{($company_data)?(($company_data->mma=="MMA")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>MMA
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="PersonalFitness" value="PersonalFitness" {{($company_data)?(($company_data->PersonalFitness=="PersonalFitness")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Personal Fitness
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="pilates" value="Pilates" {{($company_data)?(($company_data->pilates=="Pilates")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Pilates
+                                            </label>
+
+                                        </div>
+                                        <div class="col-lg-4">
+                                        <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="Spinning" value="Spinning" {{($company_data)?(($company_data->Spinning=="Spinning")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Spinning
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="weightlift" value="WeightLefting" {{($company_data)?(($company_data->weightlift=="WeightLefting")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Weightlifting
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="yoga" value="Yoga" {{($company_data)?(($company_data->yoga=="Yoga")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Yoga
+                                            </label>
+                                        </div>
+                                        
+    
+                                        
+                                    </div>                                
+                                    
+
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlTextarea1">Working Hours</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="all_check" value="all"
+                                            {{($company_data)?(($company_data->all_check=="all") ? "checked":""):''}} >
+                                                <span class="new-control-indicator"></span>Open 24X7
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Facebook
+                                <br>
+                                <?php if($company_data){ $week = json_decode($company_data->week_date);}?>
+
+                                <div class="custom-control custom-checkbox">
+
+                                    <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="week_date[]" value="Monday" {{ ($company_data)?(($company_data->week_date && in_array("Monday",json_decode($company_data->week_date))) ? "checked":""):''}}>
+                                                <span class="new-control-indicator"></span>Mon
                                     </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-Facebook"></i></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5">
+                                                <i class="far fa-keyboard"></i>
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Facebook" id="inputUsername3" 
-                                            name="facebook" value="{{($company_data)?$company_data->facebook:''}}">
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
+                                            name="mon_from" value="{{($company_data)?$company_data->mon_from:''}}">
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Twitter
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-Twitter"></i></span>
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5">
+                                                <i class="far fa-keyboard"></i>
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Twitter" id="inputUsername3" 
-                                            name="twitter" value="{{($company_data)?$company_data->twitter:''}}">
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
+                                            name="mon_to" value="{{($company_data)?$company_data->mon_to:''}}">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Instagram
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="fab fa-instagram"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Instagram" id="inputUsername3" 
-                                            name="instagram" value="{{($company_data)?$company_data->instagram:''}}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Youtube Video Link
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-Youtube"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="https://www.youtube.com/watch?v=" id="inputUsername3" 
-                                                name="youtube" value="{{($company_data)?$company_data->youtube:''}}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- image banner -->
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-lg-12 control-label">
-                                       Image Banner 
-                                    </label>
-                                    <div class="col-md-9">
+                                <div class="custom-control custom-checkbox">
+
                                    
+                                    <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="week_date[]" value="Tuesday" {{ ($company_data)?(($company_data->week_date && in_array("Tuesday",json_decode($company_data->week_date))) ? "checked":""):''}}>
+                                                <span class="new-control-indicator"></span>Tue
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
+                                            name="tue_from" value="{{($company_data)?$company_data->tue_from:''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
+                                            name="tue_to" value="{{($company_data)?$company_data->tue_to:''}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="custom-control custom-checkbox">
+                                    <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="week_date[]" value="Wednesday" {{ ($company_data)?(($company_data->week_date && in_array("Wednesday",json_decode($company_data->week_date))) ? "checked":""):''}}>
+                                                <span class="new-control-indicator"></span>Wed
+                                    </label>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
+                                            name="wed_from" value="{{($company_data)?$company_data->wed_from:''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
+                                            name="wed_to" value="{{($company_data)?$company_data->wed_to:''}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="custom-control custom-checkbox">
+                                    <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="week_date[]" value="Thursday" {{ ($company_data)?(($company_data->week_date && in_array("Thursday",json_decode($company_data->week_date))) ? "checked":""):''}}>
+                                                <span class="new-control-indicator"></span>Thu
+                                    </label>
+                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
+                                            name="thu_from" value="{{($company_data)?$company_data->thu_from:''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
+                                            name="thu_to" value="{{($company_data)?$company_data->thu_to:''}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="custom-control custom-checkbox">
+                                     <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="week_date[]" value="Friday" {{ ($company_data)?(($company_data->week_date && in_array("Friday",json_decode($company_data->week_date))) ? "checked":""):''}}>
+                                                <span class="new-control-indicator"></span>Fri
+                                    </label>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
+                                            name="fri_from" value="{{($company_data)?$company_data->fri_from:''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
+                                            name="fri_to" value="{{($company_data)?$company_data->fri_to:''}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="custom-control custom-checkbox">
+
+                                     <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="week_date[]" value="Saturday" {{ ($company_data)?(($company_data->week_date && in_array("Saturday",json_decode($company_data->week_date))) ? "checked":""):''}}>
+                                                <span class="new-control-indicator"></span>Sat
+                                    </label>
+                                   
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
+                                            name="sat_from" value="{{($company_data)?$company_data->sat_from:''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
+                                            name="sat_to" value="{{($company_data)?$company_data->sat_to:''}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="custom-control custom-checkbox">
+
+                                    <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="week_date[]" value="Sunday" {{ ($company_data)?(($company_data->week_date && in_array("Sunday",json_decode($company_data->week_date))) ? "checked":""):''}}>
+                                                <span class="new-control-indicator"></span>Sun
+                                    </label>
+                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="From" id="inputUsername3" 
+                                            name="sun_from" value="{{($company_data)?$company_data->sun_from:''}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon5"><i class="far fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="number" class="form-control" placeholder="To" id="inputUsername3" 
+                                            name="sun_to" value="{{($company_data)?$company_data->sun_to:''}}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                        </div>
-                        <div class="form-actions" style="bottom:0px;">
-                            <button type="submit" style="opacity:0;" id="real_submit">Submit Profile</button>
-                        </div>
-                    </form>
-                </div>
-                <hr>
-                <div class="card-body">
-                    <div class="row">
-                        @if($banner)
-                            @foreach($banner as $temp)
-                            <div class="col-md-3" id="banner-preview-{{$temp->id}}">
-                                <span style="float:right; font-size:25px; cursor:pointer;" onclick="image_del({{$temp->id}})">x</span>
-                                <img src="upload/{{ $temp->image_path}}" style="width:100%; height:120px;" class="img-rounded" />
+                            <div class="widget-header">                                
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                        <h4>Network</h4>
+                                        <h6>Account Link</h6>
+                                    </div>
+                                </div>
                             </div>
-                            @endforeach
-                        @endif
+                             <div class="widget-content widget-content-area">
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Facebook </label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="https://www.facebook.com/username/"  name="facebook" value="{{($company_data)?$company_data->facebook:''}}">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Twitter </label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="https://www.twitter.com/username/" name="twitter" value="{{($company_data)?$company_data->twitter:''}}">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Instagram </label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="https://www.instagram.com/username/" name="instagram" value="{{($company_data)?$company_data->instagram:''}}">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Youtube Video Link </label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="https://www.youtube.com/watch?v=" name="youtube" value="{{($company_data)?$company_data->youtube:''}}">
+                                </div>
+                                
+                                <input type="submit" name="time" class="btn btn-primary" id="real_submit" value="Save Changes">
+
+                            </div>
+                        </form>
+                        <div class="card-body">
+                            <div class="row">
+                                @if($banner)
+                                    @foreach($banner as $temp)
+                                    <div class="col-md-3" id="banner-preview-{{$temp->id}}">
+                                        <span style="float:right; font-size:25px; cursor:pointer;" onclick="image_del({{$temp->id}})">x</span>
+                                        <img src="upload/{{ $temp->image_path}}" style="width:100%; height:120px;" class="img-rounded" />
+                                    </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-actions" style="bottom:0px;">
+                                <button class="btn btn-sm btn-success" id="toast-success" onclick="submit_fun()">Save Changes</button>
+                                <button type="submit" class="btn btn-sm btn-danger" id="toast-warning" onclick="reset_fun()">Reset</button>                    </div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="form-actions" style="bottom:0px;">
-                        <button class="btn btn-sm btn-success" id="toast-success" onclick="submit_fun()">Submit Profile</button>
-                        <button type="submit" class="btn btn-sm btn-danger" id="toast-warning" onclick="reset_fun()">Reset</button>                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-4"></div>
-        <div class="col-lg-12 col-md-24">
-        </div>
-    </div>
-</section>
+                <!-- </div> -->
+                
+           
+            <!-- </div> -->
+
+           
+            
+         </div>
 
 @stop
 @section('footer_scripts')
 <!--   page level js ----------->
-<script language="javascript" type="text/javascript" src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
 <script src="{{ asset('vendors/toastr/js/toastr.js') }}" ></script>
 <script src="{{ asset('js/pages/toastr.js') }}"></script>
 <script>
@@ -976,7 +910,13 @@ Dashboard @parent
         }
     }
 </script>
+ <script src="{{ asset('mytemp/plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
+
 <script type="text/javascript">
+
+        //First upload
+    let firstUpload = new FileUploadWithPreview('myFirstImage');
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1024,5 +964,29 @@ Dashboard @parent
                 // alert();
             }
         };
+
+$("#hh").hide();
+$("#exampleFormControlSelect1").val($("#country_code").val());
+$("#rr").change(function(){
+
+$("#hh").show();
+
+$("#ddd").hide();
+
+
+});
+
+$('select[name=phone_number_code]').change(function(){
+    
+    let val = $('option:selected',this).attr('data');
+    
+    $('input[name=phone_number_country]').val(val);
+    
+})
+
 </script>
+
+
+
+
 @stop

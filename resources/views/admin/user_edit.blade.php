@@ -1,136 +1,129 @@
 @extends('layouts.default')
 {{-- Page title --}}
 @section('title')
-Dashboard @parent
+Users @parent
 @stop
-{{-- page level styles --}}
-@section('header_styles')
-<!-- page vendors -->
-<link href="{{ asset('css/pages.css')}}" rel="stylesheet">
 
-<!--end of page vendors -->
-@stop
 @section('content')
+<style>
+    .custom-control{
+        padding-left: 0px!important;
+    }
+</style>
+        <!--<div class="container"> -->
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div aria-label="breadcrumb" class="card-breadcrumb">
-        <h1>Profile Edit</h1>
-    </div>
-    <div class="separator-breadcrumb border-top"></div>
-</section>
-<!-- /.content -->
-<section class="content">
-    <div class="row">
+            <div class="row layout-top-spacing w-100">
 
-        <!-- avatar -->
-        <div class="col-lg-2 col-md-4"></div>
-        <div class="col-lg-8 col-md-16">
-            <form action="{{ route('personal_avatar')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="picture-container">
-                    <div class="picture">
-                        
-                        @if($personal_avatar)
-                        <img src="{{ asset($personal_avatar->avatar)}}" class="picture-src" id="wizardPicturePreview" title="">
-                        @else
-                        @endif
-                        <input type="file" id="wizard-picture" name="avatar">
-                    </div>
-                    <h6 class="">Logo ( 512px*512px )</h6>
-                </div>
-                <button type="submit" style="top:-300px; position:absolute" id="avatar" ></button>
-            </form>
-        </div>
-        <div class="col-lg-2 col-md-4"></div>
-
-        <!-- company information -->
-        <div class="col-lg-2 col-md-4"></div>
-        <div class="col-lg-8 col-md-16">
-            <div class="card">
-                <div class="card-header bg-secondary text-white ">
-                    <h3 class="card-title d-inline">
-                        General Information
-                    </h3>
-                    <span class="float-right">
-                        <i class="fa fa-chevron-up clickable"></i>
-                    </span>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('admin.update_personal')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <input type="text" class="form-control" name="user_id" value="{{($users)?$users->id:''}}" hidden>
-                        <div class="form-body">
-                            <!-- gym name -->
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Fist Name
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-User"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Fist Name" id="inputUsername3" 
-                                            name="first_name" value="{{($users)?$users->name:''}}" required>
-                                        </div>
-                                    </div>
+                <!-- <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing"> -->
+                    <div class="statbox widget box box-shadow w-100">
+                        <div class="widget-header">                                
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Profile Edit</h4>
                                 </div>
                             </div>
-                            <!-- gym name -->
-                            <div class="form-group pad-top40">
+                            @if (Session::get('danger'))
+                  
                                 <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Last Name
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-User"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Last Name" id="inputUsername3" 
-                                            name="last_name" value="{{($users)?$users->last_name:''}}" required>
-                                        </div>
+                                    <div class="col-md-12 mt-1">
+                                        
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ Session::get('danger') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- gym name -->
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Trainer Name
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-Add-User"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Username" id="inputUsername3" 
-                                            name="company_name" value="{{($trainer_data)?$trainer_data->company_name:''}}" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             
-                            <!-- country -->
-                            <div class="form-group">
+                                    </div>
+                                </div>
+                            
+                                @endif
+                                @if (Session::get('success_img'))
+                  
                                 <div class="row">
-                                    <label for="inputAddress4" class="col-md-3 control-label">
-                                        Country
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Globe"></i>
-                                                </span>
-                                            </span>
-                                        <select class="browser-default custom-select" name="country" style="height:40px;">
-                                            <option value="not" class="hidden defaultText">Country</option>
+                                    <div class="col-md-12 mt-1">
+                                        
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ Session::get('success_img') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                            
+                                    </div>
+                                </div>
+                            
+                                @endif
+                        </div>
+                        <div class="widget-content widget-content-area">
+                            <form action="{{ route('personal_avatar')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                    <div class="custom-file-container" data-upload-id="myFirstImage">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label>Logo ( 300px*300px )</label>
+                                                <label class="custom-file-container__custom-file" >
+                                                    <input type="file" id="rr" class="custom-file-container__custom-file__custom-file-input" name="avatar" accept="image/*">
+                                                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                                    <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                                </label>
+                                                <button type="submit" class="btn btn-primary mt-5" id="avatar" >Upload Profile Image</button>
+                                                <a href="javascript:void(0)"  class="custom-file-container__image-clear" title="Clear Image"><button type="button" class="btn btn-danger mt-5">Remove</button></a>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                @if($personal_avatar)
+                                                <div class="row" id="ddd" style="margin-top:50px;margin-left:10px;">
+                                                    <div class="col-sm-3"> 
+                                                    </div>
+                                                    <div class="col-sm-6">                
+                                                    <img class="img-thumbnail" style="max-height: 125px;background-repeat: no-repeat;" src="{{ asset($personal_avatar->avatar) }}"  >
+                                                    </div>
+                                                    <div class="col-sm-3"> 
+                                                    </div> 
+                                                </div>    
+                                                
+                                                <div  class="custom-file-container__image-preview" id="hh" style="max-height: 125px;">
+                                                    
+                                                </div>
+                                                @else
+                                                <div class="custom-file-container__image-preview" style="max-height: 125px;">>
+                                                    
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                      
+                                    </div>                                        
+                            </form>
+                        </div>
+                        <div class="widget-header">                                
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>General Information</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <form  action="{{ route('admin.update_personal')}}" method="post" enctype="multipart/form-data" >
+                            @csrf
+                            <input type="text" class="form-control" name="user_id" value="{{($users)?$users->id:''}}" hidden>
+                            <div class="widget-content widget-content-area">
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">First Name</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="First Name"  name="first_name" value="{{($users)?$users->name:''}}" required>
+                                </div>
+                                 <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Last Name</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Last Name"  name="last_name" value="{{($users)?$users->last_name:''}}" required>
+                                </div>
+                                 <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Trainer Name</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Username"  name="company_name" value="{{($trainer_data)?$trainer_data->company_name:''}}" required>
+                                    <input type="hidden" id="country_code" value="{{@$trainer_data->country}}">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlSelect1">Country</label>
+                                    <select class="form-control" name="country"  id="exampleFormControlSelect1">
+                                        <option value="not" class="hidden defaultText">Country</option>
                                             <option value="ax">    Aaland Islands                          </option>
                                             <option value="af">    Afghanistan                          </option>
                                             <option value="al">    Albania                          </option>
@@ -374,252 +367,230 @@ Dashboard @parent
                                             <option value="ye">    Yemen                          </option>
                                             <option value="zm">    Zambia                          </option>
                                             <option value="zw">    Zimbabwe                          </option>
-                                        </select>
-                                        </div>
-                                    </div>
+                                    </select>
                                 </div>
-                            </div>
-                            
-                            <!-- email -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="inputAddress4" class="col-md-3 control-label">
-                                        Email
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Email"></i>
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" id="inputAddress4"
-                                                placeholder=" Email" name="email" value="{{($trainer_data)?$trainer_data->email:''}}" required>
-                                        </div>
-                                    </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Email</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput"  placeholder=" Email" name="email" value="{{($trainer_data)?$trainer_data->email:''}}" required>
                                 </div>
-                            </div>
-                            <!-- website -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="inputAddress4" class="col-md-3 control-label">
-                                        Website
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Computer"></i>
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" id="inputAddress4"
-                                            placeholder="Website" name="website" value="{{($trainer_data)?$trainer_data->website:''}}">
-                                        </div>
-                                    </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Website</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput"  placeholder="Website" name="website" value="{{($trainer_data)?$trainer_data->website:''}}">
                                 </div>
-                            </div>
-                            <!-- Gender -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-3"><label>Gender</label></div>
-                                    <div class="col-md-8">
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" class="form-check-input" id="materialInline1" name="gender" value="male"
+                                <div class="form-group mb-2">
+                                    <label for="exampleFormControlTextarea1">Gender</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    
+                                    <div class="row">
+
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="radio" class="new-control-input" name="gender" value="male"
                                             {{($trainer_data)?(($trainer_data->gender=="male")?'checked':''):''}}>
-                                            <label class="form-check-label active" for="materialInline1">Male</label>
+                                                <span class="new-control-indicator"></span>Male
+                                            </label>
                                         </div>
-                                        <!-- Material inline 2 -->
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" class="form-check-input" id="materialInline2" name="gender" value="female"
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="radio" class="new-control-input" name="gender" value="female"
                                             {{($trainer_data)?(($trainer_data->gender=="female")?'checked':''):''}}>
-                                            <label class="form-check-label" for="materialInline2">Female</label>
+                                                <span class="new-control-indicator"></span>Female
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4 mt-1">
+                                    <label for="formGroupExampleInput">MOBILE NUMBER</label>
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                             
+                                             <input type="hidden" name="phone_number_country" value="{{(@$trainer_data)?$trainer_data->phone_number_country:''}}">
+                                              <select class="form-control" name="phone_number_code" id="exampleFormControlSelect1" required>
+                                                <option value="">select country code</option>
+                                                @foreach($country_array as $code => $country):
+
+                                                    <?php $countryName = ucwords(strtolower($country["name"])); ?>
+		                                            
+                                                    <option value="{{ $country['code'] }}" data="{{ $countryName }}" {{($trainer_data)?(($trainer_data->phone_number_country==$countryName)?'selected':''):''}}>{{ $countryName }} </option>
+                                                
+                                                @endforeach
+
+                                              </select>
+                                                
+                                        </div>
+                                        <div class="col-lg-9">
+                                            
+                                            <input type="text" class="form-control" id="formGroupExampleInput"   placeholder="Phone Number" name="phone_number" value="{{($trainer_data)?$trainer_data->phone_number:''}}" required>
+                                        
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- mobile -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="inputnumber3" class="col-md-3 control-label">
-                                        Contact Mobile
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="im im-icon-Phone-Wifi"></i>
-                                                </span>
-                                            </span>
-                                            <input type="text" placeholder="Phone Number" class="form-control"
-                                                id="inputnumber3" name="phone_number" value="{{($trainer_data)?$trainer_data->phone_number:''}}"/ required>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlTextarea1">I can train in:</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    
+                                    <div class="row">
+                                       
+                                        
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="session" value="session"
+                                            {{($trainer_data)?(($trainer_data->session=="session")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Live Session
+                                            </label>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-3"><label>Description Of Trainer Services</label></div>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck20" name="session" value="session"
-                                                    {{($trainer_data)?(($trainer_data->session=="session")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck20">Live Session</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck21" name="personal_training" value="personal_training"
-                                                    {{($trainer_data)?(($trainer_data->personal_training=="personal_training")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck21">Personal Training</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck22" name="group_training" value="group_training"
-                                                    {{($trainer_data)?(($trainer_data->group_training=="group_training")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck22">Group Training</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck23" name="nutrition" value="nutrition"
-                                                    {{($trainer_data)?(($trainer_data->nutrition=="nutrition")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck23">Nutrition/Meal Plan</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="incustomCheck24" name="one_training" value="one_training"
-                                                    {{($trainer_data)?(($trainer_data->one_training=="one_training")?'checked':''):''}}>
-                                                    <label class="custom-control-label" for="incustomCheck24">1/1 Training</label>
-                                                </div>
-                                            </div>
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="personal_training" value="personal_training"
+                                                {{($trainer_data)?(($trainer_data->personal_training=="personal_training")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Personal Training
+                                            </label>
+                                            
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr><br>
-                            <!-- social link -->
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Network
-                                    </label>
-                                    <div class="col-md-9">
-                                        <label for="inputUsername3" >
-                                        Account Link
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Facebook
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-Facebook"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Facebook" id="inputUsername3" 
-                                            name="facebook" value="{{($trainer_data)?$trainer_data->facebook:''}}">
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="group_training" value="group_training" {{($trainer_data)?(($trainer_data->group_training=="group_training")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Group Training
+                                            </label>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Twitter
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-Twitter"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Twitter" id="inputUsername3" 
-                                            name="twitter" value="{{($trainer_data)?$trainer_data->twitter:''}}">
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="nutrition" value="nutrition" {{($trainer_data)?(($trainer_data->nutrition=="nutrition")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Nutrition/Meal Plan
+                                            </label>
+                                            
+                                            
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Instagram
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="fab fa-instagram"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Instagram" id="inputUsername3" 
-                                            name="instagram" value="{{($trainer_data)?$trainer_data->instagram:''}}">
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="one_training" value="one_training" {{($trainer_data)?(($trainer_data->one_training=="one_training")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>1/1 Training
+                                            </label>
+                                            
+                                            
+                                        </div>    
+                                         <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="boxing" value="boxing" {{($trainer_data)?(($trainer_data->boxing=="boxing")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Boxing
+                                            </label>
+                                        </div>                                       
+    
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="yoga" value="yoga" {{($trainer_data)?(($trainer_data->yoga=="yoga")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Yoga
+                                            </label>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- youtube link -->
-                            <div class="form-group pad-top40">
-                                <div class="row">
-                                    <label for="inputUsername3" class="col-md-3 control-label">
-                                       Youtube
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <span class="input-group-append">
-                                                <span class="input-group-text">
-                                                <i class="im im-icon-Youtube"></i></span>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Youtube" id="inputUsername3" 
-                                            name="youtube_link" value="{{($trainer_data)?$trainer_data->youtube_link:''}}">
+
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="meditation" value="meditation" {{($trainer_data)?(($trainer_data->meditation=="meditation")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Meditation
+                                            </label>
                                         </div>
+
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="pilates" value="pilates" {{($trainer_data)?(($trainer_data->pilates=="pilates")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Pilates
+                                            </label>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="stretching" value="stretching" {{($trainer_data)?(($trainer_data->stretching=="stretching")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Stretching
+                                            </label>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label class="new-control new-checkbox checkbox-info">
+                                                <input type="checkbox" class="new-control-input" name="ballet" value="ballet" {{($trainer_data)?(($trainer_data->ballet=="ballet")?'checked':''):''}}>
+                                                <span class="new-control-indicator"></span>Ballet
+                                            </label>
+                                        </div>                                   
+    
+                                        
+                                    </div>                                
+                                    
+
+                                </div>
+
+                            </div>
+                            <div class="widget-header">                                
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                        <h4>Network</h4>
+                                        <h6>Account Link</h6>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-sm btn-primary">Submit Profile</button>
-                            &nbsp;
-                            <button type="button" class="btn btn-sm btn-warning" onclick="reset_fun()">Reset</button>
-                        </div>
-                    </form>
-                </div>
+                             <div class="widget-content widget-content-area">
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Facebook </label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Facebook"  name="facebook" value="{{($trainer_data)?$trainer_data->facebook:''}}">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Twitter </label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Twitter" name="twitter" value="{{($trainer_data)?$trainer_data->twitter:''}}">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Instagram </label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Instagram" name="instagram" value="{{($trainer_data)?$trainer_data->instagram:''}}">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="formGroupExampleInput">Youtube Video Link </label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="https://www.youtube.com/watch?v=" name="youtube" value="{{($trainer_data)?$trainer_data->youtube:''}}">
+                                </div>
+                                
+                                <input type="submit" name="time" class="btn btn-primary" value="Save Changes">
+
+                            </div>
+                        </form>
+                    </div>
+                <!-- </div> -->
+                
+           
             </div>
-        </div>
-        <div class="col-lg-2 col-md-4"></div>
-    </div>
-</section>
+
+           
+            
+        <!-- </div> -->
 
 @stop
 @section('footer_scripts')
 <!--   page level js ----------->
-<script language="javascript" type="text/javascript" src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
-<script>
-    function reset_fun() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: '{{route("personal_profile.reset")}}',
-            type:'post',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            },
-            success: function(){
-                location.reload();
-            }
-        });
-    }
+<script src="{{ asset('vendors/toastr/js/toastr.js') }}" ></script>
+<script src="{{ asset('js/pages/toastr.js') }}"></script>
+
+<script src="{{ asset('mytemp/plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
+
+<script type="text/javascript">
+
+        //First upload
+    let firstUpload = new FileUploadWithPreview('myFirstImage');
+
+    $("#hh").hide();
+$("#exampleFormControlSelect1").val($("#country_code").val());
+$("#rr").change(function(){
+
+$("#hh").show();
+
+$("#ddd").hide();
+
+    
+});
+$('select[name=phone_number_code]').change(function(){
+    
+    let val = $('option:selected',this).attr('data');
+    
+    $('input[name=phone_number_country]').val(val);
+    
+})
 </script>
-<!-- end of page level js -->
 @stop

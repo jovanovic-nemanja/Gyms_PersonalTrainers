@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -75,23 +76,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-       
-       
-	 $user = User::create(
-            [
-            'external_id' => 'iii',
-            'name' => $data['name'],
-            'last_name' => $data['last_name'],
-            'website' => $data['website'],
-            'country' => $data['country'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role' => $data['role'],
-            ]
+
+        $user = User::create(
+                [
+                'external_id' => 'iii',
+                'name' => $data['name'],
+                'last_name' => $data['last_name'],
+                'website' => $data['website'],
+                'country' => $data['country'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'role' => $data['role'],
+                ]
         );   
-        $user->external_id = 'i-'.(100000 + $user->id);
+
+        $u = 'i-'.(100000 + $user->id);
+
+        $user->external_id = $u;
+        
         $user->update();
-	return $user;   
+
+         Session::put('myregrole', $data['role']);
+         Session::put('myregname', $data['name']);
+         Session::put('myreglname', $data['last_name']);
+         Session::put('myregemail', $data['email']);
+         Session::put('myregexternal', $u);
+         
+
+	    
+        return $user;   
 		  
     }
 	

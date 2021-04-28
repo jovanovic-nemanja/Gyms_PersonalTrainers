@@ -45,7 +45,6 @@ $(document).ready(function () {
             .addClass($(this).data("color"));
     });
 
-
     $(".toggle-right").click(function () {
         $(".left-aside .sidebar").css("margin-left","0").removeClass('sidebar-res');
         $("#demo .navbar-brand h1").replaceWith('<h1 class="text-center">JOSH</h1>');
@@ -129,3 +128,5 @@ $(document).on('click', '.card-header .removepanel', function(){
 
 });
 //card collapse code end
+
+$(".left-aside .sidebar").css("margin-left","0px !important");

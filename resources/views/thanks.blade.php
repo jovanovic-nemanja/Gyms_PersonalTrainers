@@ -78,7 +78,7 @@
 
                                             @csrf
 
-                                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline mt-15">{{ __('Please Go For Login') }}</button>.
+                                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline mt-15">Proceed to Login </button>.
 
                                         </form>
 
@@ -92,7 +92,7 @@
 
                         <div class="col-md-6 signup-form">
 
-                            <img src="{{ asset('./login-pic.png')}}" class="img-responsive my-1 pt-3 mr-1" style="width:102%; height:87%;">
+                            <img src="{{ asset('img/images/two_auth.jpeg')}}" class="img-responsive my-1 pt-3 mr-1" style="width:102%; height:87%;">
 			    <p style="text-align: end;font-style: italic;font-size: small;">Viktoria Kharlap, Athens, Greece</p>
                         </div>
 

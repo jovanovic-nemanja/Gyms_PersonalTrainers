@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 signup-form">
-                            <img src="{{ asset('./login-pic.png')}}" class="img-responsive my-1 mr-1"  style="width:102%; height:97%;" >
+                            <img src="{{ asset('img/images/login10.png')}}" class="img-responsive my-1 mr-1"  style="width:102%; height:97%;" >
                         </div>
                     </div>
                 </div>

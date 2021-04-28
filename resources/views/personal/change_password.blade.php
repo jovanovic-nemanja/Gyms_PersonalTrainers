@@ -1,149 +1,101 @@
 @extends('layouts.personal_default')
 {{-- Page title --}}
 @section('title')
-Dashboard @parent
+Change Password @parent
 @stop
-{{-- page level styles --}}
-@section('header_styles')
-<!-- page vendors -->
-<link href="{{ asset('css/pages.css')}}" rel="stylesheet">
+
+@section('content')
 <style>
-    .field-icon {
-        float: right;
-        margin-left: -25px;
-        margin-top: 10px;
-        position: relative;
-        z-index: 50;
+    .custom-control{
+        padding-left: 0px!important;
     }
 </style>
 
+        <!--<div class="container"> -->
 
-<!--end of page vendors -->
-@stop
-@section('content')
+            <div class="row layout-top-spacing w-100">
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div aria-label="breadcrumb" class="card-breadcrumb">
-        <h1>My Profile</h1>
-
-    </div>
-    <div class="separator-breadcrumb border-top"></div>
-</section>
-<!-- /.content -->
-<section class="content">
-    <div class="row">
-        <!-- membership-->
-        <div class="col-lg-2 col-md-4"></div>
-        <div class="col-lg-8 col-md-16">
-            <div class="card">
-                <div class="card-header bg-secondary text-white ">
-                    <h3 class="card-title d-inline">
-                       Change Password
-                    </h3>
-                    <span class="float-right">
-                        <i class="fa fa-chevron-up clickable"></i>
-                    </span>
-                </div>
-                <div class="card-body">
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="form-group">
+                <!-- <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing"> -->
+                    <div class="statbox widget box box-shadow w-100">
+                        
+                        <div class="widget-header">                                
                             <div class="row">
-                                <label for="inputCurrentPass" class="col-md-3 control-label">
-                                    Current Password
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-key"></i>
-                                            </span>
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Change Password</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content widget-content-area">
+                            <form  method="post" enctype="multipart/form-data">
+                                
+                                <label for="formGroupExampleInput">Current Password</label>
+                                <div class="input-group mb-4">
+                                      <input type="password" class="form-control" placeholder="Current Password" name="current_pass" required id="currentPass" data="eye-off">
+                                      <div class="input-group-append" >
+                                        <span class="input-group-text" id="basic-addon6">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off toggle-password" toggle="#currentPass"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
                                         </span>
-                                        <input type="password" class="form-control" id="currentPass"
-                                            placeholder="Current Password" name="current_pass" required>
-                                        <span toggle="#currentPass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                      </div>
+                                </div>
+                                <label for="formGroupExampleInput">New Password</label>
+                                <div class="input-group mb-4">
+                                      <input type="password" class="form-control" placeholder="New Password" name="password" required id="password" data="eye-off">
+                                      <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off toggle-password" toggle="#password"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                                        </span>
+                                      </div>
+                                </div>
+                                <label for="formGroupExampleInput">Confirm Password</label>
+                                <div class="input-group mb-4">
+                                      <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPass" required id="confirmPass" data="eye-off">
+                                      <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon6">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off toggle-password" toggle="#confirmPass"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                                        </span>
+                                      </div>
+                                </div>
+
+                                <input type="button" class="btn btn-primary" name="time" onclick="submit_pass()" value="Save Changes">
+                                
+                            </form>
+                            <div id="passModal" class="modal animated fadeInDown" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Alert</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body" id="modal_body">
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label for="Password" class="col-md-3 control-label">
-                                    New Password
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-key"></i>
-                                            </span>
-                                        </span>
-                                        <input type="password" class="form-control" id="password"
-                                            placeholder="New Password" name="password" required>
-                                        <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label for="confirmPass" class="col-md-3 control-label">
-                                    Confirm Password
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-key"></i>
-                                            </span>
-                                        </span>
-                                        <input type="password" class="form-control" id="confirmPass"
-                                            placeholder="Confirm Password" name="confirmPass" required>
-                                        <span toggle="#confirmPass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-sm btn-primary" onclick="submit_pass()">Submit</button>
-                        </div>
-                    </form>
-                    <!-- Modal -->
-                    <button type="button" class="btn btn-sm btn-primary" hidden data-toggle="modal" data-target="#exampleModal" id="showmodal">Submit</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                   <div class="modal-dialog" role="document">
-                       <div class="modal-content">
-                           <div class="modal-header mt-0">
-                               <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                   <span aria-hidden="true">&times;</span>
-                               </button>
-                           </div>
-                           <div class="modal-body" id="modal_body">
-                           </div>
-                           <div class="modal-footer">
-                               <button type="button" class="btn btn-primary" data-dismiss="modal">OK
-                               </button>
-                               {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                           </div>
-                       </div>
-                   </div>
-               </div>
-                </div>
+                        
+                    </div>
+                <!-- </div> -->
+                
+           
             </div>
-        <div class="col-lg-2 col-md-4"></div>
-    </div>
-</section>
+
+           
+            
+        <!-- </div> -->
+    
 
 @stop
 @section('footer_scripts')
-<!--   page level js ----------->
-<script language="javascript" type="text/javascript" src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
-<!-- end of page level js -->
 <script>
-    function submit_pass() {
+ function submit_pass() {
         if ($("#currentPass").val()!="" && $("#password").val()!="" && $("#confirmPass").val()!="") {
          
             if ($("#password").val() == $("#confirmPass").val()) {
@@ -165,11 +117,11 @@ Dashboard @parent
                             $("#password").val("");
                             $("#confirmPass").val("");
                             $("#modal_body").text("Password changed.");
-                            $('#showmodal').click();
+                            $('#passModal').modal('show');
                         }
                         else{
                             $("#modal_body").text("Current password not correct."); 
-                            $('#showmodal').click();
+                            $('#passModal').modal('show');
                         }
                         
                     }
@@ -178,28 +130,38 @@ Dashboard @parent
 
             else {
                 $("#modal_body").text("No match new password."); 
-                $('#showmodal').click();
+                $('#passModal').modal('show');
             }
         }
         else {
             $("#modal_body").text("Please fully enter all fields.");
-            $('#showmodal').click();
+            $('#passModal').modal('show');
         }
     }
-    $(".toggle-password").click(function() {
+    
+    $(document).on('click','.toggle-password',function() {
 
-    $(this).toggleClass("fa-eye fa-eye-slash");
-        var input = $($(this).attr("toggle"));
+        let input = $($(this).attr("toggle"));
+
+        let input_id = $(this).attr("toggle");
+
+        let icon_html = '';
+
         if (input.attr("type") == "password") {
             input.attr("type", "text");
+            input.attr("data", "eye");
+            icon_html = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye toggle-password" toggle="'+input_id+'"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
         } else {
             input.attr("type", "password");
+            input.attr("data", "eye-off");
+            icon_html ='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off toggle-password" toggle="'+input_id+'"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
         }
+
+        $(input).next('div').find('span').find('svg').remove();
+
+        $(input).next('div').find('span').html(icon_html);
+        
     });
 
-    function show_modal() {
-        $("#alert1").show();
-        $('#showmodal').click();
-    }
 </script>
 @stop
