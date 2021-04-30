@@ -467,28 +467,49 @@ class PersonalController extends Controller
         // added by Nemanja
         if (@$request->membership_plan_id) {
             $membership = Personal_Membership::find($request->membership_plan_id);
+
+            $membership->price      =   $request->price;
+            $membership->currency      =   $request->currency;
+            $membership->duration   =   $request->duration;
+            $membership->service    =   $request->service;
+            $membership->perk       =   @json_encode($perk);
+            $membership->discount       =   $request->discount;
+            if($request->featured == "featured"){
+                $membership->featured    =   $request->featured;
+            }else{
+                $membership->featured    = "none";
+            }
+            if($request->app == "app"){
+                $membership->app    =   $request->app;
+            }else{
+                $membership->app    = "computer";
+            }
+            $membership->user_id    =   auth()->user()->id;
+
+            $membership->update();
         }else{
             $membership = new Personal_Membership;    
+
+            $membership->price      =   $request->price;
+            $membership->currency      =   $request->currency;
+            $membership->duration   =   $request->duration;
+            $membership->service    =   $request->service;
+            $membership->perk       =   @json_encode($perk);
+            $membership->discount       =   $request->discount;
+            if($request->featured == "featured"){
+                $membership->featured    =   $request->featured;
+            }else{
+                $membership->featured    = "none";
+            }
+            if($request->app == "app"){
+                $membership->app    =   $request->app;
+            }else{
+                $membership->app    = "computer";
+            }
+            $membership->user_id    =   auth()->user()->id;
+
+            $membership->save();
         }
-        
-        $membership->price      =   $request->price;
-        $membership->currency      =   $request->currency;
-        $membership->duration   =   $request->duration;
-        $membership->service    =   $request->service;
-        $membership->perk       =   @json_encode($perk);
-        $membership->discount       =   $request->discount;
-        if($request->featured == "featured"){
-            $membership->featured    =   $request->featured;
-        }else{
-            $membership->featured    = "none";
-        }
-        if($request->app == "app"){
-            $membership->app    =   $request->app;
-        }else{
-            $membership->app    = "computer";
-        }
-        $membership->user_id    =   auth()->user()->id;
-        $membership->save();
 
         return back()->with('success','Changes saved successfully');
 
