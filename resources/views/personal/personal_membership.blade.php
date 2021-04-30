@@ -19,7 +19,7 @@ Membership Plans @parent
         .tooltip {
             position: relative;
             display: inline-block;
-            border-bottom: 1px dotted black;
+            /*border-bottom: 1px dotted black;*/
             opacity: 1;
         }
 
@@ -101,7 +101,7 @@ Membership Plans @parent
                                 <div class="col-sm-9">
                                     <div class="form-group mb-4">
                                         <label for="formGroupExampleInput">Regular Price<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="price" placeholder="For example: USD $50" name="price" required>
+                                        <input type="text" class="form-control" id="price" placeholder="For example: US $50" name="price" required>
                                     </div>
                                 </div>
 
@@ -110,7 +110,7 @@ Membership Plans @parent
                                     <div class="form-group mb-4">
                                         <label for="exampleFormControlSelect1">Currency</label>
                                         <select class="form-control" name="currency"  id="currency" style=" font-size: 15px!important;color: #393939!important;font-weight: 400!important;font-family: "Nunito"; required>
-                                                <option value="USD $">USD $</option>
+                                                <option value="US $">US $</option>
                                                 <option value="EURO €">EURO €</option>
                                                 <option value="KWD KD">KWD KD</option>
                                         </select>
@@ -122,7 +122,7 @@ Membership Plans @parent
                                     
                                     <div class="form-group mb-4">
                                         <label for="formGroupExampleInput">Discount (If you aren't offering any special discount, leave it empty)</label>
-                                        <input type="text" class="form-control" id="discount" placeholder="For example: USD $10" name="discount">
+                                        <input type="number" class="form-control" id="discount" placeholder="For example: US $10" name="discount">
                                     </div>
 
                                 </div>
@@ -162,66 +162,6 @@ Membership Plans @parent
                                      <input type="submit" name="time" class="btn btn-primary mt-2" value="Publish Offer">
                                 </div>
                             </div>
-
-                            <br>
-
-                            <div class="row">
-                                <?php $i = 0;?>
-                                @if($membership)
-                                    @foreach($membership as $temp)
-                                        <?php $i++;?>
-                                        <div class="col-xl-4 col-lg-12 col-sm-12 col-xs-12 mb-3">
-                                            
-                                            <div class="card component-card_1" style="margin-top: 21px;">
-                                                @if($temp->featured!="featured")
-                                                    <?php $color = "#393939"; ?>
-                                                @else
-                                                    <?php $color = "#dc3545"; ?>
-                                                @endif
-                                                
-                                                <div class="card-body" style="border-radius: 5px 5px 0px 0px;filter: drop-shadow(0px 2px 1px rgba(0,0,0,0.1));background-color: <?= $color ?>">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            @if($temp->app=="app")
-                                                                <?php $i--;?>
-                                                                <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: Nunito;margin-bottom:8px!important;margin-top:10px;">App Exclusive</h5>
-                                                            @else
-                                                                <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: Nunito;margin-top:10px;">PLAN {{$i}}</h5>
-                                                            @endif
-                                                            <h1 class="text-center" style="font-size: 34px;color: #eaeaea;font-weight: 600;font-family: "Nunito";">{{ $temp->service }}</h1>
-                                                            <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: "Nunito";">{{ $temp->duration }}</h5>
-                                                        </div>
-                                                        <div class="col-lg-12 text-center">
-                                                            
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="card-body" style="border-radius: 5px;background-color: #ffffff;padding: 15px 42px!important;">
-                                                    <p style="text-align:center; color:#393939;margin-top:27px;"> {{ $temp->service }}</p><hr style="border-top: 3px solid #f1f2f3!important;">
-                                                    <?php $perk = json_decode($temp->perk);
-                                                        foreach(@$perk as $key => $v){ if(!empty($v)){?>
-                                                            <p style="text-align:center; color:#393939;"> {{ $v }}</p><hr style="border-top: 3px solid #f1f2f3!important;">
-                                                    <?php } } ?>
-
-                                                    <div class="row" style="justify-content: center;">
-                                                        <a class="personal_membership_id" data-value="{{ $temp->id }}" style="color: green;" title="Edit">
-                                                            <i data-feather="edit" style="height: 3rem; width: auto!important;"></i>
-                                                        </a>&nbsp;&nbsp;
-
-                                                        <button type="button" class="btn btn-dark" style="font-weight:600;">{{ $temp->currency }}{{ $temp->price }}</button>&nbsp;&nbsp;
-
-                                                        <a onclick="return confirm_delete()" href="{{ route('personal_membership.delete',$temp->id)}}" style="color: red; cursor: pointer;" title="Delete">
-                                                            <i data-feather="trash" style="height: 3rem; width: auto!important;"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endif                                        
-                            </div>
                         </div>
 
                         <div class="col-lg-4">
@@ -257,6 +197,64 @@ Membership Plans @parent
                     </div>
                 </form>
                 <hr>
+                <div class="row">
+                    <div class="col-md-9" style="display: contents;">
+                        <?php $i = 0;?>
+                        @if($membership)
+                            @foreach($membership as $temp)
+                                <?php $i++;?>
+                                <div class="col-md-3" style="display: inline-flex;">
+                                    <div class="card component-card_1" style="margin-top: 21px; margin: initial;">
+                                        @if($temp->featured!="featured")
+                                            <?php $color = "#393939"; ?>
+                                        @else
+                                            <?php $color = "#dc3545"; ?>
+                                        @endif
+                                        
+                                        <div class="card-body" style="border-radius: 5px 5px 0px 0px;filter: drop-shadow(0px 2px 1px rgba(0,0,0,0.1));background-color: <?= $color ?>">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    @if($temp->app=="app")
+                                                        <?php $i--;?>
+                                                        <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: Nunito;margin-bottom:8px!important;margin-top:10px;">App Exclusive</h5>
+                                                    @else
+                                                        <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: Nunito;margin-top:10px;">PLAN {{$i}}</h5>
+                                                    @endif
+                                                    <h1 class="text-center" style="font-size: 34px;color: #eaeaea;font-weight: 600;font-family: "Nunito";">{{ $temp->service }}</h1>
+                                                    <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: "Nunito";">{{ $temp->duration }}</h5>
+                                                </div>
+                                                <div class="col-lg-12 text-center">
+                                                    
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body" style="border-radius: 5px;background-color: #ffffff;padding: 15px 42px!important;">
+                                            <p style="text-align:center; color:#393939;margin-top:27px;"> {{ $temp->service }}</p><hr style="border-top: 3px solid #f1f2f3!important;">
+                                            <?php $perk = json_decode($temp->perk);
+                                                foreach(@$perk as $key => $v){ if(!empty($v)){?>
+                                                    <p style="text-align:center; color:#393939;"> {{ $v }}</p><hr style="border-top: 3px solid #f1f2f3!important;">
+                                            <?php } } ?>
+
+                                            <div class="row" style="justify-content: center;">
+                                                <a class="personal_membership_id" data-value="{{ $temp->id }}" style="color: green;" title="Edit">
+                                                    <i data-feather="edit" style="height: 3rem; width: auto!important;"></i>
+                                                </a>&nbsp;&nbsp;
+
+                                                <button type="button" class="btn btn-dark" style="font-weight:600;">{{ $temp->currency }}{{ $temp->price - $temp->discount }}</button>&nbsp;&nbsp;
+
+                                                <a onclick="return confirm_delete()" href="{{ route('personal_membership.delete',$temp->id)}}" style="color: red; cursor: pointer;" title="Delete">
+                                                    <i data-feather="trash" style="height: 3rem; width: auto!important;"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif  
+                    </div>                                      
+                </div>
                 <div class="row mt-3">
                 </div>
             </div>
@@ -314,6 +312,17 @@ Membership Plans @parent
                 currency_txt = $("#currency option:selected").html();
                 discount_txt = $('#discount').val();
                 perk_txt = $('#perk').val();
+
+                PreviewPlanTable(service_txt, duration_txt, price_txt, currency_txt, discount_txt, perk_txt);
+            });
+
+            $('#discount').blur(function() {
+                discount_txt = $(this).val();
+                service_txt = $('#service').val();
+                duration_txt = $('#duration').val();
+                currency_txt = $("#currency option:selected").html();
+                perk_txt = $('#perk').val();
+                price_txt = $('#price').val();
 
                 PreviewPlanTable(service_txt, duration_txt, price_txt, currency_txt, discount_txt, perk_txt);
             });
@@ -396,7 +405,7 @@ Membership Plans @parent
         function PreviewPlanTable(service, duration, price, currency, discount, perk) {
             $('.service_txt').text(service);
             $('.duration_txt').text(duration);
-            $('.currency_price').text(currency + price);
+            $('.currency_price').text(currency + parseInt(price - discount));
 
             if (perk) {
                 var arr_perks = perk.split('\n');
