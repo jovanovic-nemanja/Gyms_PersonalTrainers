@@ -436,6 +436,7 @@ class PersonalController extends Controller
                 $admins = DB::table('users')->where('role', 1)->get();
                 //save into db notifiactions
 
+                // added by Nemanja
                 foreach($admins as $key => $v)
                 {
                     if (@$request->membership_plan_id) {
@@ -463,6 +464,7 @@ class PersonalController extends Controller
         }
 
         $perk = explode(PHP_EOL, $request->perk);
+        // added by Nemanja
         if (@$request->membership_plan_id) {
             $membership = Personal_Membership::find($request->membership_plan_id);
         }else{
