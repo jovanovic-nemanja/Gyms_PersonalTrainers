@@ -112,7 +112,7 @@ Membership Plans @parent
                                         <select class="form-control" name="currency"  id="currency" style=" font-size: 15px!important;color: #393939!important;font-weight: 400!important;font-family: "Nunito"; required>
                                                 <option value="US $">US $</option>
                                                 <option value="EURO €">EURO €</option>
-                                                <option value="KWD KD">KWD KD</option>
+                                                <option value="KWD">KWD</option>
                                         </select>
                                     </div>
 
