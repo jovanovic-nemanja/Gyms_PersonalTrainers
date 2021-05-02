@@ -271,7 +271,7 @@ Membership Plans ##parent-placeholder-3c6de1b7dd91465d437ef415f94f36afc1fbc8a8##
             var perk_txt = '';
             PreviewPlanTable(service_txt, duration_txt, price_txt, currency_txt, discount_txt, perk_txt);
 
-            $('#service').blur(function() {
+            $('#service').on('input', function() {
                 service_txt = $(this).val();
                 duration_txt = $('#duration').val();
                 price_txt = $('#price').val();
@@ -282,7 +282,7 @@ Membership Plans ##parent-placeholder-3c6de1b7dd91465d437ef415f94f36afc1fbc8a8##
                 PreviewPlanTable(service_txt, duration_txt, price_txt, currency_txt, discount_txt, perk_txt);
             });
 
-            $('#duration').blur(function() {
+            $('#duration').on('input', function() {
                 duration_txt = $(this).val();
                 service_txt = $('#service').val();
                 price_txt = $('#price').val();
@@ -293,7 +293,7 @@ Membership Plans ##parent-placeholder-3c6de1b7dd91465d437ef415f94f36afc1fbc8a8##
                 PreviewPlanTable(service_txt, duration_txt, price_txt, currency_txt, discount_txt, perk_txt);
             });
 
-            $('#price').blur(function() {
+            $('#price').on('input', function() {
                 price_txt = $(this).val();
                 service_txt = $('#service').val();
                 duration_txt = $('#duration').val();
@@ -304,7 +304,7 @@ Membership Plans ##parent-placeholder-3c6de1b7dd91465d437ef415f94f36afc1fbc8a8##
                 PreviewPlanTable(service_txt, duration_txt, price_txt, currency_txt, discount_txt, perk_txt);
             });
 
-            $('#currency').blur(function() {
+            $('#currency').change(function() {
                 price_txt = $('#price').val();
                 service_txt = $('#service').val();
                 duration_txt = $('#duration').val();
@@ -315,7 +315,7 @@ Membership Plans ##parent-placeholder-3c6de1b7dd91465d437ef415f94f36afc1fbc8a8##
                 PreviewPlanTable(service_txt, duration_txt, price_txt, currency_txt, discount_txt, perk_txt);
             });
 
-            $('#discount').blur(function() {
+            $('#discount').on('input', function() {
                 discount_txt = $(this).val();
                 service_txt = $('#service').val();
                 duration_txt = $('#duration').val();
@@ -326,7 +326,7 @@ Membership Plans ##parent-placeholder-3c6de1b7dd91465d437ef415f94f36afc1fbc8a8##
                 PreviewPlanTable(service_txt, duration_txt, price_txt, currency_txt, discount_txt, perk_txt);
             });
 
-            $('#perk').blur(function() {
+            $('#perk').on('input', function() {
                 price_txt = $('#price').val();
                 service_txt = $('#service').val();
                 duration_txt = $('#duration').val();
