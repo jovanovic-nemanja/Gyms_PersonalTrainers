@@ -22,10 +22,11 @@ use App\Models\Personal_avatar;
 use App\Models\Company;
 use App\Models\Banner;
 use App\Models\Membership;
+use Illuminate\Http\Response;
+use App\Models\Personal_Membership;
 use App\Models\Bbank;
 use App\Models\Touristpass;
 use App\Models\Document;
-use App\Models\Personal_Membership;
 use App\Models\Trainer;
 use App\Models\Bank;
 
@@ -723,40 +724,83 @@ $first_notification = DB::table('notifications')
 
             if(!empty($first_notification)){
 
-                 $admins = DB::table('users')->where('role', 1)->get();
+                $admins = DB::table('users')->where('role', 1)->get();
                 //save into db notifiactions
 
+                // added by Nemanja
                 foreach($admins as $key => $v)
                 {
-
-                    DB::table("notifications")->insert([
+                    if (@$request->membership_plan_id) {
+                        DB::table("notifications")->insert([
                     
-                    'user_id' => auth()->user()->id,
-                    'show_to' => $v->id,
-                    'name' => 'NEW_MEMBERSHIP',
-                    'value' => 'has submitted new membership plan'
-                    
-                    ]);
-
+                            'user_id' => auth()->user()->id,
+                            'show_to' => $v->id,
+                            'name' => 'UPDATE_MEMBERSHIP',
+                            'value' => 'has updated a membership plan'
+                        
+                        ]);
+                    }else{
+                        DB::table("notifications")->insert([
+                        
+                            'user_id' => auth()->user()->id,
+                            'show_to' => $v->id,
+                            'name' => 'NEW_MEMBERSHIP',
+                            'value' => 'has submitted new membership plan'
+                        
+                        ]);
+                    }
                 }
-           
-
             }
-
         }
 
-        $membership = new Membership;
-        $membership->price      =   $request->price;
-        $membership->duration   =   $request->duration;
-        $membership->service    =   $request->service;
-        $membership->perk       =   $request->perk;
-        if($request->app == "app") {
-            $membership->app    =   $request->app;
+        $perk = explode(PHP_EOL, $request->perk);
+        // added by Nemanja
+        if (@$request->membership_plan_id) {
+            $membership = Membership::find($request->membership_plan_id);
+
+            $membership->price      =   $request->price;
+            $membership->currency      =   $request->currency;
+            $membership->duration   =   $request->duration;
+            $membership->service    =   $request->service;
+            $membership->perk       =   @json_encode($perk);
+            $membership->discount       =   $request->discount;
+            if($request->featured == "featured"){
+                $membership->featured    =   $request->featured;
+            }else{
+                $membership->featured    = "none";
+            }
+            if($request->app == "app"){
+                $membership->app    =   $request->app;
+            }else{
+                $membership->app    = "computer";
+            }
+            $membership->user_id    =   auth()->user()->id;
+
+            $membership->update();
         }else{
-            $membership->app    = "computer";
+            $membership = new Membership;    
+
+            $membership->price      =   $request->price;
+            $membership->currency      =   $request->currency;
+            $membership->duration   =   $request->duration;
+            $membership->service    =   $request->service;
+            $membership->perk       =   @json_encode($perk);
+            $membership->discount       =   $request->discount;
+            if($request->featured == "featured"){
+                $membership->featured    =   $request->featured;
+            }else{
+                $membership->featured    = "none";
+            }
+            if($request->app == "app"){
+                $membership->app    =   $request->app;
+            }else{
+                $membership->app    = "computer";
+            }
+            $membership->user_id    =   auth()->user()->id;
+
+            $membership->save();
         }
-        $membership->user_id    =   auth()->user()->id;
-        $membership->save();
+
         return back()->with('success','Changes saved successfully');;
     }
 
@@ -766,6 +810,21 @@ $first_notification = DB::table('notifications')
         
         return view('user.membership_edit',$data);
         
+    }
+
+    /**
+    * get membership plan information
+    * @author Nemanja
+    * @param membership plan id
+    * @since 2021-05-04
+    * @return membership plan informations
+    */
+    public function getGym_membership(Request $request)
+    {
+        $data['membership'] = Membership::find($request->id);
+        $data['plan_id'] = $request->id;
+
+        return response()->json(['status' => "success", 'data' => $data]);
     }
 
     public function membership_update(Request $request){

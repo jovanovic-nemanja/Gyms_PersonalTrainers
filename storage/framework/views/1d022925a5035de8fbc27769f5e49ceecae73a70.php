@@ -1,10 +1,8 @@
-@extends('layouts.default')
-{{-- Page title --}}
-@section('title')
-Membership Plans @parent
-@stop
+<?php $__env->startSection('title'); ?>
+Membership Plans ##parent-placeholder-3c6de1b7dd91465d437ef415f94f36afc1fbc8a8##
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <style>
     .custom-control{
         padding-left: 0px!important;
@@ -54,13 +52,14 @@ Membership Plans @parent
                     <h4>Membership Plans</h4>
                 </div>
             </div>
-            @if (Session::get('success'))
+            <?php if(Session::get('success')): ?>
   
                 <div class="row">
                     <div class="col-md-12 mt-1">
                         
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ Session::get('success') }}
+                        <?php echo e(Session::get('success')); ?>
+
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -69,11 +68,11 @@ Membership Plans @parent
                     </div>
                 </div>
             
-            @endif
+            <?php endif; ?>
         </div>
         <div class="widget-content widget-content-area">
-            <form  action="{{ route('membership')}}" method="post" enctype="multipart/form-data">
-                @csrf
+            <form  action="<?php echo e(route('membership')); ?>" method="post" enctype="multipart/form-data">
+                <?php echo csrf_field(); ?>
                 <input type="hidden" name="membership_plan_id" id="membership_plan_id" class="membership_plan_id" value="" />
 
                 <div class="row">
@@ -193,28 +192,28 @@ Membership Plans @parent
             <div class="row">
                 <div class="col-md-9" style="display: contents;">
                     <?php $i = 0;?>
-                    @if($membership)
-                        @foreach($membership as $temp)
+                    <?php if($membership): ?>
+                        <?php $__currentLoopData = $membership; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $temp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $i++;?>
                             <div class="col-md-3" style="display: inline-flex;">
                                 <div class="card component-card_1" style="margin-top: 21px; margin: initial;">
-                                    @if($temp->featured!="featured")
+                                    <?php if($temp->featured!="featured"): ?>
                                         <?php $color = "#393939"; ?>
-                                    @else
+                                    <?php else: ?>
                                         <?php $color = "#dc3545"; ?>
-                                    @endif
+                                    <?php endif; ?>
                                     
                                     <div class="card-body" style="border-radius: 5px 5px 0px 0px;filter: drop-shadow(0px 2px 1px rgba(0,0,0,0.1));background-color: <?= $color ?>">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                @if($temp->app=="app")
+                                                <?php if($temp->app=="app"): ?>
                                                     <?php $i--;?>
                                                     <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: Nunito;margin-bottom:8px!important;margin-top:10px;">App Exclusive</h5>
-                                                @else
-                                                    <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: Nunito;margin-top:10px;">PLAN {{$i}}</h5>
-                                                @endif
-                                                <h1 class="text-center" style="font-size: 34px;color: #eaeaea;font-weight: 600;font-family: "Nunito";">{{ $temp->service }}</h1>
-                                                <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: "Nunito";">{{ $temp->duration }}</h5>
+                                                <?php else: ?>
+                                                    <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: Nunito;margin-top:10px;">PLAN <?php echo e($i); ?></h5>
+                                                <?php endif; ?>
+                                                <h1 class="text-center" style="font-size: 34px;color: #eaeaea;font-weight: 600;font-family: "Nunito";"><?php echo e($temp->service); ?></h1>
+                                                <h5 class="card-title text-center" style="font-size: 14px;color: #eaeaea;font-weight: 600;font-family: "Nunito";"><?php echo e($temp->duration); ?></h5>
                                             </div>
                                             <div class="col-lg-12 text-center">
                                                 
@@ -224,28 +223,28 @@ Membership Plans @parent
                                     </div>
 
                                     <div class="card-body" style="border-radius: 5px;background-color: #ffffff;padding: 15px 42px!important;">
-                                        <p style="text-align:center; color:#393939;margin-top:27px;"> {{ $temp->service }}</p><hr style="border-top: 3px solid #f1f2f3!important;">
+                                        <p style="text-align:center; color:#393939;margin-top:27px;"> <?php echo e($temp->service); ?></p><hr style="border-top: 3px solid #f1f2f3!important;">
                                         <?php $perk = json_decode($temp->perk);
                                             foreach(@$perk as $key => $v){ if(!empty($v)){?>
-                                                <p style="text-align:center; color:#393939;"> {{ $v }}</p><hr style="border-top: 3px solid #f1f2f3!important;">
+                                                <p style="text-align:center; color:#393939;"> <?php echo e($v); ?></p><hr style="border-top: 3px solid #f1f2f3!important;">
                                         <?php } } ?>
 
                                         <div class="row" style="justify-content: center;">
-                                            <a class="personal_membership_id" data-value="{{ $temp->id }}" style="color: green;" title="Edit">
+                                            <a class="personal_membership_id" data-value="<?php echo e($temp->id); ?>" style="color: green;" title="Edit">
                                                 <i data-feather="edit" style="height: 3rem; width: auto!important;"></i>
                                             </a>&nbsp;&nbsp;
 
-                                            <button type="button" class="btn btn-dark" style="font-weight:600;">{{ $temp->currency }}{{ $temp->price - $temp->discount }}</button>&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-dark" style="font-weight:600;"><?php echo e($temp->currency); ?><?php echo e($temp->price - $temp->discount); ?></button>&nbsp;&nbsp;
 
-                                            <a onclick="return confirm_delete()" href="{{ route('membership.delete', $temp->id)}}" style="color: red; cursor: pointer;" title="Delete">
+                                            <a onclick="return confirm_delete()" href="<?php echo e(route('membership.delete', $temp->id)); ?>" style="color: red; cursor: pointer;" title="Delete">
                                                 <i data-feather="trash" style="height: 3rem; width: auto!important;"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    @endif  
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>  
                 </div>                                      
             </div>
             <div class="row mt-3">
@@ -254,8 +253,8 @@ Membership Plans @parent
     </div>
 </div>
 
-@stop
-@section('footer_scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer_scripts'); ?>
     <script type="text/javascript">
         $('document').ready(function() {
             var service_txt = '';
@@ -427,4 +426,6 @@ Membership Plans @parent
             return false;
         }
     </script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\work\Gyms_PersonalTrainers\resources\views/user/membership.blade.php ENDPATH**/ ?>

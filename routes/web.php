@@ -185,6 +185,10 @@ Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middlewar
         Route::post('myprofile/save_pass)', 'ProfileController@save_pass')->name('myprofile.save_pass');
         //membership
         Route::get('membership', 'ProfileController@membership_index')->name('membership.index');
+
+        //added by Nemanja
+        Route::get('membership/getPlaninfor', 'ProfileController@getGym_membership')->name('membership.getGym_membership');
+            
         Route::post('profile/membership', 'ProfileController@membership')->name('membership');
         Route::get('profile/membership/edit/{id}', 'ProfileController@membership_edit')->name('membership.edit');
         Route::post('profile/membership_update', 'ProfileController@membership_update')->name('membership_update');

@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>@yield('title')</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}"/>
-    <link href="{{ asset('mytemp/assets/css/loader.css') }}" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('mytemp/assets/js/loader.js') }}"></script>
+    <title><?php echo $__env->yieldContent('title'); ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo e(asset('images/favicon.png')); ?>"/>
+    <link href="<?php echo e(asset('mytemp/assets/css/loader.css')); ?>" rel="stylesheet" type="text/css" />
+    <script src="<?php echo e(asset('mytemp/assets/js/loader.js')); ?>"></script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link href="{{ asset('mytemp/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('mytemp/assets/css/plugins.css') }}" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('mytemp/bootstrap/css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('mytemp/assets/css/plugins.css')); ?>" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-   <link href="{{ asset('mytemp/assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
+   <link href="<?php echo e(asset('mytemp/assets/css/users/user-profile.css')); ?>" rel="stylesheet" type="text/css" />
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    <link href="{{ asset('mytemp/plugins/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('mytemp/assets/css/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('mytemp/plugins/apex/apexcharts.css')); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo e(asset('mytemp/assets/css/dashboard/dash_1.css')); ?>" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    <link href="{{ asset('mytemp/assets/css/scrollspyNav.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('mytemp/plugins/font-icons/fontawesome/css/regular.css') }}">
-    <link rel="stylesheet" href="{{ asset('mytemp/plugins/font-icons/fontawesome/css/fontawesome.css') }}">
-    <!--<script src="{{ asset('mytemp/assets/js/libs/jquery-3.1.1.min.js') }}"></script>-->
+    <link href="<?php echo e(asset('mytemp/assets/css/scrollspyNav.css')); ?>" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<?php echo e(asset('mytemp/plugins/font-icons/fontawesome/css/regular.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('mytemp/plugins/font-icons/fontawesome/css/fontawesome.css')); ?>">
+    <!--<script src="<?php echo e(asset('mytemp/assets/js/libs/jquery-3.1.1.min.js')); ?>"></script>-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
-    <link href="{{ asset('mytemp/plugins/file-upload/file-upload-with-preview.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('mytemp/assets/css/components/cards/card.css') }}" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('mytemp/plugins/file-upload/file-upload-with-preview.min.css')); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('mytemp/assets/css/components/cards/card.css')); ?>" rel="stylesheet" type="text/css" />
 
     <!-- added by Nemanja -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -168,19 +168,19 @@
 
             <ul class="navbar-item theme-brand flex-row  text-center">
                 <li class="nav-item theme-logo">
-                    @if(auth()->user()->role==1)
-                    <a href="{{ URL::to('admin') }}">
-                     @elseif(auth()->user()->role==3)
+                    <?php if(auth()->user()->role==1): ?>
+                    <a href="<?php echo e(URL::to('admin')); ?>">
+                     <?php elseif(auth()->user()->role==3): ?>
                    
-                        <a href="{{ route('personal_myprofile') }}">
+                        <a href="<?php echo e(route('personal_myprofile')); ?>">
                             
-                    @else
+                    <?php else: ?>
                   
-                        <a href="{{ URL::to('myprofile') }}">
+                        <a href="<?php echo e(URL::to('myprofile')); ?>">
                           
-                    @endif
+                    <?php endif; ?>
 
-                        <img src="{{ asset('images/a_logo.png') }}" class="navbar-logo" alt="logo">
+                        <img src="<?php echo e(asset('images/a_logo.png')); ?>" class="navbar-logo" alt="logo">
                     </a>
                 </li>
                 <li class="nav-item theme-text">
@@ -203,11 +203,11 @@
 
                 <li class="nav-item dropdown language-dropdown">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset('mytemp/assets/img/england2.png') }}" class="flag-width" alt="flag"  style="width:25px;height:19px;">
+                        <img src="<?php echo e(asset('mytemp/assets/img/england2.png')); ?>" class="flag-width" alt="flag"  style="width:25px;height:19px;">
                     </a>
                     <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
-                       <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ asset('mytemp/assets/img/romanian.png') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Romanian</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ asset('mytemp/assets/img/england2.png') }}" class="flag-width" alt="flag" style="width:25px!important;"> <span class="align-self-center">&nbsp;English</span></a>
+                       <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="<?php echo e(asset('mytemp/assets/img/romanian.png')); ?>" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Romanian</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="<?php echo e(asset('mytemp/assets/img/england2.png')); ?>" class="flag-width" alt="flag" style="width:25px!important;"> <span class="align-self-center">&nbsp;English</span></a>
                     </div>
                 </li>
 
@@ -240,7 +240,7 @@
                                 <div class="">
                                     <div class="media">
                                         <div class="user-img">
-                                            <img src="{{ asset('mytemp/assets/img/90x90.jpg') }}" class="img-fluid mr-2" alt="avatar">
+                                            <img src="<?php echo e(asset('mytemp/assets/img/90x90.jpg')); ?>" class="img-fluid mr-2" alt="avatar">
                                         </div>
                                         <div class="media-body">
                                             <div class="">
@@ -280,53 +280,53 @@
                 <li class="nav-item dropdown notification-dropdown">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                         @if(count($notifications) > 0)
+                         <?php if(count($notifications) > 0): ?>
                         <span class="badge badge-success"></span>
-                        @endif
+                        <?php endif; ?>
                     </a>
                     <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown" style="height: 350px;overflow: overlay;">
                         <div class="notification-scroll">
 
-                            @if(count($notifications) > 0)
-                            @foreach($notifications as $key => $v)
+                            <?php if(count($notifications) > 0): ?>
+                            <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="dropdown-item">
                                 <div class="media server-log">
                                     <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-server"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6" y2="6"></line><line x1="6" y1="18" x2="6" y2="18"></line></svg> -->
-                                    @if(auth()->user()->role==1)
+                                    <?php if(auth()->user()->role==1): ?>
                                     <i data-feather="user"></i>
                                     <div class="media-body">
                                         <div class="data-info">
 
-                                                    @if($v->role == 3)
-                                                    <span><a href="{{ url('admin/user_personal_view',$v->user_id) }}">{{ $v->username }}</a></span>
-                                                    @else
-                                                    <span><a href="{{ url('admin/user_view',$v->user_id) }}">{{ $v->username }}</a></span>
+                                                    <?php if($v->role == 3): ?>
+                                                    <span><a href="<?php echo e(url('admin/user_personal_view',$v->user_id)); ?>"><?php echo e($v->username); ?></a></span>
+                                                    <?php else: ?>
+                                                    <span><a href="<?php echo e(url('admin/user_view',$v->user_id)); ?>"><?php echo e($v->username); ?></a></span>
 
-                                                    @endif
-                                                    <span class="ml-4" style="font-size:11px;">{{ $v->ext_id }}</span>
+                                                    <?php endif; ?>
+                                                    <span class="ml-4" style="font-size:11px;"><?php echo e($v->ext_id); ?></span>
                                                 
-                                                  <p class="">{{ $v->value }}@if($v->name == 'COMPLETE_PROFILE')<i data-feather="check-circle" style="width: 14px;" title="approve" class="app_live_acc" data-userid="{{ $v->user_id }}"></i>@endif</p>
+                                                  <p class=""><?php echo e($v->value); ?><?php if($v->name == 'COMPLETE_PROFILE'): ?><i data-feather="check-circle" style="width: 14px;" title="approve" class="app_live_acc" data-userid="<?php echo e($v->user_id); ?>"></i><?php endif; ?></p>
                                         </div>
                                     </div>
-                                    @else
+                                    <?php else: ?>
 
                                     <i data-feather="check-circle"></i>                                    
                                     <div class="media-body">
                                         <div class="data-info">
                                                 
-                                            <p class="">{{ $v->value }}</p>
+                                            <p class=""><?php echo e($v->value); ?></p>
 
                                         </div>
                                     </div>
                                     
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
-                            @endforeach
-                            @else
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php else: ?>
                             <p>No notification found</p>
-                            @endif
+                            <?php endif; ?>
                             
                             <!--<div class="dropdown-item">
                                 <div class="media server-log">
@@ -394,25 +394,25 @@
                          }
                          ?>
                          
-                        <img src="{{ asset($avatar_path) }}" alt="avatar">
+                        <img src="<?php echo e(asset($avatar_path)); ?>" alt="avatar">
                     </a>
                     <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                         <div class="">
                             <div class="dropdown-item">
-                                <a class="">{!! strtoupper($uuid) !!}</a>
+                                <a class=""><?php echo strtoupper($uuid); ?></a>
                             </div>
                             
                             <div class="dropdown-item">
                             
-                                @if(auth()->user()->role==3)
+                                <?php if(auth()->user()->role==3): ?>
                             
-                                    <a href="{{ route('personal_profile.changepass') }}">
+                                    <a href="<?php echo e(route('personal_profile.changepass')); ?>">
                                         
-                                @else
+                                <?php else: ?>
                             
-                                    <a href="{{ route('myprofile.changepass') }}">
+                                    <a href="<?php echo e(route('myprofile.changepass')); ?>">
                                     
-                                @endif
+                                <?php endif; ?>
                                 <i data-feather="rotate-cw"></i> Change Password</a>
                             </div>
                             <!--
@@ -420,23 +420,23 @@
                                 <a class="" href="auth_lockscreen.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Lock Screen</a>
                             </div>-->
                             <div class="dropdown-item">
-                                <!--<a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <!--<a class="" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                    
-                                    {{ __('Logout') }}</a>
+                                    <?php echo e(__('Logout')); ?></a>
                                     
-                                    {{ SESSION('user') }}            
-                                <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
-                                    @csrf
+                                    <?php echo e(SESSION('user')); ?>            
+                                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="get" style="display: none;">
+                                    <?php echo csrf_field(); ?>
                                 </form>-->
 
-                                <a class="" href="{{ route('Logout') }}" onclick="event.preventDefault();
+                                <a class="" href="<?php echo e(route('Logout')); ?>" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                    
-                                    {{ __('Logout') }}</a>
+                                    <?php echo e(__('Logout')); ?></a>
 
-                                <form id="logout-form" action="{{ route('Logout') }}" method="post" style="display: none;">
-                                    @csrf
+                                <form id="logout-form" action="<?php echo e(route('Logout')); ?>" method="post" style="display: none;">
+                                    <?php echo csrf_field(); ?>
                                 </form>
 
                             </div>
@@ -467,7 +467,7 @@
 
                         <nav class="breadcrumb-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">  @yield('title') </a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">  <?php echo $__env->yieldContent('title'); ?> </a></li>
                             </ol>
                         </nav>
 
@@ -505,16 +505,16 @@
             <nav id="sidebar" style="width:105%">
                 <div class="shadow-bottom"></div>
                 <ul class="list-unstyled menu-categories" id="accordionExample" style="padding-right:0px !important">
-                    @if(auth()->user()->role==1)
-                    <li class="menu mysidebar" {!! (Request::is('') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ URL::to('admin') }}" aria-expanded="false" class="dropdown-toggle">
+                    <?php if(auth()->user()->role==1): ?>
+                    <li class="menu mysidebar" <?php echo (Request::is('') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(URL::to('admin')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="airplay"></i>
                                 <span>Dashboard</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="#" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="box"></i>
@@ -523,7 +523,7 @@
                         </a>
                     </li>
 
-                    <!--<li class="menu" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
+                    <!--<li class="menu" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="#" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="calendar"></i>
@@ -531,61 +531,61 @@
                             </div>
                         </a>
                     </li>-->
-                    @endif
+                    <?php endif; ?>
                     
-                    @if(auth()->user()->role==1)
-                    <li class="menu mysidebar" {!! (Request::is('builder') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ URL::to('admin/users') }}" aria-expanded="false" class="dropdown-toggle">
+                    <?php if(auth()->user()->role==1): ?>
+                    <li class="menu mysidebar" <?php echo (Request::is('builder') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(URL::to('admin/users')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i class="far fa-user" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
                                 <span style="margin-left: 36px;">Users Profile </span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ URL::to('admin/membership') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(URL::to('admin/membership')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="layers"></i>
                                 <span>Membership  Manager</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ URL::to('admin/tourist') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(URL::to('admin/tourist')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="credit-card"></i>
                                 <span>Tourist Pass  Manager</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ URL::to('admin/bank') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(URL::to('admin/bank')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                <i data-feather="user"></i>
                                 <span>Bank  Manager</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ URL::to('admin/document') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(URL::to('admin/document')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="framer"></i>
                                 <span>Document  Manager</span>
                             </div>
                         </a>
                     </li>
-                    @elseif(auth()->user()->role==3)
+                    <?php elseif(auth()->user()->role==3): ?>
                     
-                    <li class="menu mysidebar" {!! (Request::is('builder') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ route('personal_myprofile') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('builder') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(route('personal_myprofile')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i class="far fa-user" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
                                 <span style="margin-left: 36px;">Profile </span>
                             </div>
                         </a>
                     </li>
-                   <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ route('personal_myprofile.my_branding') }}" aria-expanded="false" class="dropdown-toggle">
+                   <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(route('personal_myprofile.my_branding')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="box"></i>
                                 <span>My Branding</span>
@@ -594,7 +594,7 @@
                     </li>
 
 
-                    <!--<li class="menu" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
+                    <!--<li class="menu" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="#" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="calendar"></i>
@@ -602,16 +602,16 @@
                             </div>
                         </a>
                     </li>-->
-                    @else
-                    <li class="menu mysidebar" {!! (Request::is('builder') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ URL::to('myprofile') }}" aria-expanded="false" class="dropdown-toggle">
+                    <?php else: ?>
+                    <li class="menu mysidebar" <?php echo (Request::is('builder') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(URL::to('myprofile')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i class="far fa-user" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
                                 <span style="margin-left: 36px;">Profile </span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="#" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="box"></i>
@@ -620,7 +620,7 @@
                         </a>
                     </li>
 
-                    <!--<li class="menu" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
+                    <!--<li class="menu" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="#" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="calendar"></i>
@@ -628,86 +628,86 @@
                             </div>
                         </a>
                     </li>-->
-                    @endif
-                    @if(auth()->user()->role==2)
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ URL::to('membership') }}" aria-expanded="false" class="dropdown-toggle">
+                    <?php endif; ?>
+                    <?php if(auth()->user()->role==2): ?>
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(URL::to('membership')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="layers"></i>
                                 <span>Membership  Plans</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ route('myprofile.touristpass') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(route('myprofile.touristpass')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="credit-card"></i>
                                 <span>Tourist  Pass</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ route('myprofile.bank') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(route('myprofile.bank')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="credit-card"></i>
                                 <span>Bank  Account</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ route('myprofile.document') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(route('myprofile.document')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="book"></i>
                                 <span>Documents</span>
                             </div>
                         </a>
                     </li>
-                    @endif
-                    @if(auth()->user()->role==3)
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ route('personal_membership.index') }}" aria-expanded="false" class="dropdown-toggle">
+                    <?php endif; ?>
+                    <?php if(auth()->user()->role==3): ?>
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(route('personal_membership.index')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="layers"></i>
                                 <span>Membership  Plans</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ route('personal_profile.bank') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(route('personal_profile.bank')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="credit-card"></i>
                                 <span>Bank  Account</span>
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ route('myprofile.document') }}" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(route('myprofile.document')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                <i data-feather="book"></i>
                                 <span>Documents</span>
                             </div>
                         </a>
                     </li>
-                    @endif
+                    <?php endif; ?>
                    
-                    @if(auth()->user()->role!=1)
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
-                        <a href="{{ route('myprofile.sumbit_admin') }}" aria-expanded="false" class="dropdown-toggle">
+                    <?php if(auth()->user()->role!=1): ?>
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                        <a href="<?php echo e(route('myprofile.sumbit_admin')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="bell"></i>
                                 <span>Notify Gymscanner</span>
                             </div>
                         </a>
                     </li>
-                    @endif
+                    <?php endif; ?>
 
                      <br/><br/>
                     <br/><br/>
                    
                     
-                   <li style="background-color: black;padding: 5px;" class="menu " {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
+                   <li style="background-color: black;padding: 5px;" class="menu " <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                       <div style="border: 1px solid #4e4b4b;border-radius: 4px;margin-left: -3px;padding: 6px;">
-                        <a href="{{ route('profile.contact_us') }}" data-active="true" aria-expanded="false" class="dropdown-toggle">
+                        <a href="<?php echo e(route('profile.contact_us')); ?>" data-active="true" aria-expanded="false" class="dropdown-toggle">
                             <div class="" style="padding-left: 59px!important;">
                                 <i data-feather="mail" style="width: 20px;height: 18px;color: #d8d8d8"></i>
                                 <span style="color: #e0dddd;font-size: 12px;font-weight: 600;">Contact Us</span>
@@ -717,7 +717,7 @@
                     </li>
                     <br>
 
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="http://www.gymscanner.com/terms" target="blank" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="book-open"></i>
@@ -725,7 +725,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="menu mysidebar" {!! (Request::is('typography') ? 'class="active"' : '' ) !!}>
+                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="http://www.gymscanner.com/privacy" target="blank" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="shield"></i>
@@ -748,7 +748,7 @@
             <div style="padding-right: 18px;padding-left: 62px;">
             
 
-                @yield('content')
+                <?php echo $__env->yieldContent('content'); ?>
                 
             </div>
                 <div class="row footer-wrapper">
@@ -770,10 +770,10 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="{{ asset('mytemp/bootstrap/js/popper.min.js') }}"></script>
-    <script src="{{ asset('mytemp/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('mytemp/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('mytemp/assets/js/app.js') }}"></script>
+    <script src="<?php echo e(asset('mytemp/bootstrap/js/popper.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('mytemp/bootstrap/js/bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('mytemp/plugins/perfect-scrollbar/perfect-scrollbar.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('mytemp/assets/js/app.js')); ?>"></script>
     <script>
         $(document).ready(function() {
             $(".sidebarCollapse").on("click",function(){
@@ -793,12 +793,12 @@
             App.init();
         });
     </script>
-    <script src="{{ asset('mytemp/assets/js/custom.js') }}"></script>
+    <script src="<?php echo e(asset('mytemp/assets/js/custom.js')); ?>"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
       <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <!-- END GLOBAL MANDATORY STYLES -->
-    <script src="{{ asset('mytemp/assets/js/scrollspyNav.js') }}"></script>
-    <script src="{{ asset('mytemp/plugins/font-icons/feather/feather.min.js') }}"></script>
+    <script src="<?php echo e(asset('mytemp/assets/js/scrollspyNav.js')); ?>"></script>
+    <script src="<?php echo e(asset('mytemp/plugins/font-icons/feather/feather.min.js')); ?>"></script>
     <script type="text/javascript">
         feather.replace();
     </script>
@@ -833,11 +833,11 @@
              
             let user_id = $(this).attr('data-userid');
 
-            let _token = "{{ csrf_token() }}";
+            let _token = "<?php echo e(csrf_token()); ?>";
 
         $.ajax({
 
-          url : '{{ route("profilecontroller.approve_complete_profile") }}',
+          url : '<?php echo e(route("profilecontroller.approve_complete_profile")); ?>',
           method : 'post',
           data:{_token:_token, user_id : user_id},
           cache : false,
@@ -854,6 +854,7 @@
 
         })
     </script>
-    @yield('footer_scripts')
+    <?php echo $__env->yieldContent('footer_scripts'); ?>
 </body>
 </html>
+<?php /**PATH D:\work\Gyms_PersonalTrainers\resources\views/layouts/default.blade.php ENDPATH**/ ?>
