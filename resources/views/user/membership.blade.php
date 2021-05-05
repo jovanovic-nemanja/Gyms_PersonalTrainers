@@ -89,7 +89,7 @@ Membership Plans @parent
                             <div class="col-sm-12">
                                 <div class="form-group mb-4">
                                     <label for="formGroupExampleInput">Duration<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="duration" placeholder="For example: 30 days" name="duration" required>
+                                    <input type="text" class="form-control" id="duration" placeholder="For example: 1 Month" name="duration" required>
                                 </div>
                             </div>
 
