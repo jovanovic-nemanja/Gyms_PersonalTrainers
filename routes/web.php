@@ -39,7 +39,7 @@ Route::post('myprofile/delete_brand_photos)', 'ProfileController@delete_brand_ph
 Route::post('myprofile/submit_brand_name)', 'ProfileController@submit_brand_name')->name('submit_brand_name');
 Route::post('myprofile/save_brand_info)', 'ProfileController@save_brand_info')->name('save_brand_info');
 Route::post('myprofile/submit_brand_image)', 'ProfileController@submit_brand_image')->name('submit_brand_image');
-
+Route::get('myprofile/branding', 'ProfileController@branding')->name('branding.index');
 // Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
 // Route::resource('users', 'UsersController');
 

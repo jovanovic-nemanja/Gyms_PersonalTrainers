@@ -1427,6 +1427,10 @@ $first_notification = DB::table('notifications')
 
     }
 
+    public function branding(){
+        return view('user/branding');
+    }
+
     public function mybrand()
     {
 
