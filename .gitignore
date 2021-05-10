@@ -4,6 +4,7 @@
 /public/uploads/
 /storage/*.key
 /vendor
+/storage
 /.idea
 /.vscode
 /.vagrant

@@ -17,6 +17,11 @@ Documents @parent
     {
         margin:0px!important;
     }
+
+    .photo_uploading_section .filename {
+        font-size: 18px;
+        padding: 0 10px;
+    }
 </style>
 
         <!--<div class="container"> -->
@@ -29,7 +34,7 @@ Documents @parent
                         <div class="widget-header">                                
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4 style="font-size: 26px;color: #393939;font-weight: 600;font-family: "Nunito";">Document Upload</h4>
+                                    <h4 style="font-size: 26px;color: #393939;font-weight: 600;font-family: 'Nunito';">Document Upload</h4>
                                 </div>
                             </div>
                         </div>
@@ -52,6 +57,27 @@ Documents @parent
                                 </div>
                                 
                             </form>
+
+                            <div class="row mt-5 photo_uploading_section">
+                                <div class="col-md-6">
+                                    <h5>Uploading</h5>
+                                    <div class="mt-3">
+                                        <i class="fa fa-images fa-2x"></i>
+                                        <p class="d-inline filename">Photo.jpg <span>(2.0 MB)</span></p>
+                                        <a href="#!"><i class="fa fa-trash"></i></a>
+                                        <div class="ldBar" data-stroke="data:ldbar/res,gradient(0,1,#f99,#ff9)" data-value="50"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Uploading</h5>
+                                    <div class="mt-3">
+                                        <i class="fa fa-images fa-2x"></i>
+                                        <p class="d-inline filename">Photo.jpg <span>(2.0 MB)</span></p>
+                                        <a href="#!"><i class="fa fa-trash"></i></a>
+                                        <div class="ldBar" data-stroke="data:ldbar/res,gradient(0,1,#f99,#ff9)" data-value="50"></div>
+                                    </div>
+                                </div>
+                            </div>
                             
                         </div>
                         

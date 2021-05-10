@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title><?php echo $__env->yieldContent('title'); ?></title>
     <link rel="icon" type="image/x-icon" href="<?php echo e(asset('images/favicon.png')); ?>"/>
-    <link href="<?php echo e(asset('mytemp/assets/css/loader.css')); ?>" rel="stylesheet" type="text/css" />
+   <link href="<?php echo e(asset('mytemp/assets/css/loader.css')); ?>" rel="stylesheet" type="text/css" />
     <script src="<?php echo e(asset('mytemp/assets/js/loader.js')); ?>"></script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="<?php echo e(asset('mytemp/bootstrap/css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo e(asset('mytemp/assets/css/plugins.css')); ?>" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-   <link href="<?php echo e(asset('mytemp/assets/css/users/user-profile.css')); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('mytemp/assets/css/users/user-profile.css')); ?>" rel="stylesheet" type="text/css" />
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="<?php echo e(asset('mytemp/plugins/apex/apexcharts.css')); ?>" rel="stylesheet" type="text/css">
@@ -22,18 +22,17 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="<?php echo e(asset('mytemp/assets/css/scrollspyNav.css')); ?>" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="<?php echo e(asset('mytemp/plugins/font-icons/fontawesome/css/regular.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('mytemp/plugins/font-icons/fontawesome/css/fontawesome.css')); ?>">
+    
+    <link rel="stylesheet" href="<?php echo e(asset('mytemp/plugins/font-icons/fontawesome/css/fontawesome5.css')); ?>">
     <!--<script src="<?php echo e(asset('mytemp/assets/js/libs/jquery-3.1.1.min.js')); ?>"></script>-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
     <link href="<?php echo e(asset('mytemp/plugins/file-upload/file-upload-with-preview.min.css')); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo e(asset('mytemp/assets/css/components/cards/card.css')); ?>" rel="stylesheet" type="text/css" />
-
-    <!-- added by Nemanja -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- ended -->
-   
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('mytemp/plugins/loading-bar/loading-bar.min.css')); ?>">
+    <script type="text/javascript" src="<?php echo e(asset('mytemp/plugins/loading-bar/loading-bar.min.js')); ?>"></script>
+    
     <style>
 
         .navbar .theme-brand li.theme-logo img{
@@ -133,11 +132,19 @@
             font-family: "Nunito";
         }
 
+        .active {
+            background: #bfc9d4;
+        }
+
         .btn-primary,.btn-danger{
             font-size: 15px!important;
             /* color: #fafafa; */
             font-weight: 600!important;
             font-family: "Nunito";
+        }
+
+        #sidebar ul.menu-categories li.menu > .dropdown-toggle svg {
+            stroke-width: 1;
         }
 
         .footer-wrapper .footer-section p {
@@ -148,10 +155,10 @@
         }
 
         .footer-wrapper {
-            padding: 14px 0px 0px 0px!important;
+            /*padding: 14px 0px 0px 0px!important;*/
+            margin: 0;
+            padding: 20px 35px;
         }
-
-
         
     </style>
 </head>
@@ -584,6 +591,7 @@
                             </div>
                         </a>
                     </li>
+
                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="<?php echo e(route('personal_myprofile.my_branding')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -603,62 +611,70 @@
                         </a>
                     </li>-->
                     <?php else: ?>
-                    <li class="menu mysidebar" <?php echo (Request::is('builder') ? 'class="active"' : '' ); ?>>
-                        <a href="<?php echo e(URL::to('myprofile')); ?>" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <i class="far fa-user" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
-                                <span style="margin-left: 36px;">Profile </span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
-                        <a href="#" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <i data-feather="box"></i>
-                                <span>My Branding</span>
-                            </div>
-                        </a>
-                    </li>
 
-                    <!--<li class="menu" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
-                        <a href="#" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <i data-feather="calendar"></i>
-                                <span>My Schedule</span>
-                            </div>
-                        </a>
-                    </li>-->
+                        <li class="menu mysidebar">
+                            <a href="<?php echo e(URL::to('myprofile')); ?>" aria-expanded="false" class="dropdown-toggle <?php echo e(url()->current() == route('myprofile') ? 'active' : ''); ?>">
+                                <div class="">
+                                    <i class="fas fa-user" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
+                                    <span style="margin-left: 36px;">Profile </span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="menu mysidebar">
+                            <a href="<?php echo e(route('branding.index')); ?>" aria-expanded="false" class="dropdown-toggle <?php echo e(url()->current() == route('branding.index') ? 'active' : ''); ?>">
+                                <div class="">
+                                    <i data-feather="box" fill="#444141db" stroke="#fff"></i>
+                                    <span>Branding</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!--<li class="menu" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
+                            <a href="#" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <i data-feather="calendar"></i>
+                                    <span>My Schedule</span>
+                                </div>
+                            </a>
+                        </li>-->
+
                     <?php endif; ?>
+
                     <?php if(auth()->user()->role==2): ?>
                     <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
-                        <a href="<?php echo e(URL::to('membership')); ?>" aria-expanded="false" class="dropdown-toggle">
+                        <a href="<?php echo e(URL::to('membership')); ?>" aria-expanded="false" class="dropdown-toggle <?php echo e(url()->current() == url('membership') ? 'active' : ''); ?>">
                             <div class="">
-                                <i data-feather="layers"></i>
-                                <span>Membership  Plans</span>
+                                
+                                <i class="fas fa-layer-group"  style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
+                                <span style="margin-left: 36px;">Membership  Plans</span>
                             </div>
                         </a>
                     </li>
                     <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
-                        <a href="<?php echo e(route('myprofile.touristpass')); ?>" aria-expanded="false" class="dropdown-toggle">
+                        <a href="<?php echo e(route('myprofile.touristpass')); ?>" aria-expanded="false" class="dropdown-toggle <?php echo e(url()->current() == route('myprofile.touristpass') ? 'active' : ''); ?>">
                             <div class="">
-                                <i data-feather="credit-card"></i>
-                                <span>Tourist  Pass</span>
+                                
+                                <i class="fas fa-map-marked-alt"  style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
+                                <span style="margin-left: 36px">Tourist Pass</span>
                             </div>
                         </a>
                     </li>
                     <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
-                        <a href="<?php echo e(route('myprofile.bank')); ?>" aria-expanded="false" class="dropdown-toggle">
+                        <a href="<?php echo e(route('myprofile.bank')); ?>" aria-expanded="false" class="dropdown-toggle <?php echo e(url()->current() == route('myprofile.bank') ? 'active' : ''); ?>">
                             <div class="">
-                                <i data-feather="credit-card"></i>
-                                <span>Bank  Account</span>
+                                
+                                <i class="fas fa-credit-card" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
+                                <span style="margin-left: 36px">Bank Account</span>
                             </div>
                         </a>
                     </li>
                     <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
-                        <a href="<?php echo e(route('myprofile.document')); ?>" aria-expanded="false" class="dropdown-toggle">
+                        <a href="<?php echo e(route('myprofile.document')); ?>" aria-expanded="false" class="dropdown-toggle <?php echo e(url()->current() == route('myprofile.document') ? 'active' : ''); ?>">
                             <div class="">
-                                <i data-feather="book"></i>
-                                <span>Documents</span>
+                                
+                                <i class="fas fa-book" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
+                                <span style="margin-left: 36px">Documents</span>
                             </div>
                         </a>
                     </li>
@@ -668,7 +684,7 @@
                         <a href="<?php echo e(route('personal_membership.index')); ?>" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="layers"></i>
-                                <span>Membership  Plans</span>
+                                <span>Membership Plans</span>
                             </div>
                         </a>
                     </li>
@@ -692,10 +708,11 @@
                    
                     <?php if(auth()->user()->role!=1): ?>
                     <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
-                        <a href="<?php echo e(route('myprofile.sumbit_admin')); ?>" aria-expanded="false" class="dropdown-toggle">
+                        <a href="<?php echo e(route('myprofile.sumbit_admin')); ?>" aria-expanded="false" class="dropdown-toggle <?php echo e(url()->current() == route('myprofile.sumbit_admin') ? 'active' : ''); ?>">
                             <div class="">
-                                <i data-feather="bell"></i>
-                                <span>Notify Gymscanner</span>
+                                
+                                <i class="fas fa-bell" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
+                                <span style="margin-left: 36px">Notify Gymscanner</span>
                             </div>
                         </a>
                     </li>
@@ -706,7 +723,7 @@
                    
                     
                    <li style="background-color: black;padding: 5px;" class="menu " <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
-                      <div style="border: 1px solid #4e4b4b;border-radius: 4px;margin-left: -3px;padding: 6px;">
+                      <div style="border: 1px solid #616eaa;border-radius: 4px;margin-left: -3px;padding: 6px;">
                         <a href="<?php echo e(route('profile.contact_us')); ?>" data-active="true" aria-expanded="false" class="dropdown-toggle">
                             <div class="" style="padding-left: 59px!important;">
                                 <i data-feather="mail" style="width: 20px;height: 18px;color: #d8d8d8"></i>
@@ -720,16 +737,18 @@
                     <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="http://www.gymscanner.com/terms" target="blank" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <i data-feather="book-open"></i>
-                                <span>Terms of Use</span>
+                                
+                                <i class="fas fa-book-open" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
+                                <span style="margin-left: 36px">Terms of Use</span>
                             </div>
                         </a>
                     </li>
                     <li class="menu mysidebar" <?php echo (Request::is('typography') ? 'class="active"' : '' ); ?>>
                         <a href="http://www.gymscanner.com/privacy" target="blank" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <i data-feather="shield"></i>
-                                <span>Privacy</span>
+                                
+                                <i class="fas fa-user-shield" style="font-size: 16px;margin-left: 4px;position: absolute;color:#444141db;"></i>
+                                <span style="margin-left: 36px">Privacy</span>
                             </div>
                         </a>
                     </li>
@@ -752,12 +771,12 @@
                 
             </div>
                 <div class="row footer-wrapper">
-                    <div class="col-9" style="padding-left:0px!important;;padding-right:0px!important;">
+                    <div class="col-9">
                         <div class="footer-section f-section-1">
                             <p class="">©Gymscanner 2021. All rights reserved.</p>
                         </div>
                     </div>
-                    <div class="col-3" style="padding-left:0px!important;;padding-right:0px!important;">
+                    <div class="col-3">
                     <div class="footer-section f-section-2 " style="text-align:right ">
                         <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
                     </div>

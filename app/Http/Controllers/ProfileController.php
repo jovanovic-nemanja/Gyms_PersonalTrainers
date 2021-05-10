@@ -376,6 +376,7 @@ class ProfileController extends Controller
 
     public function membership_index(){
         $membership = Membership::where('user_id',auth()->user()->id)->get();
+
         return view('user.membership')->with('membership', $membership);
     }
 
@@ -1427,10 +1428,6 @@ $first_notification = DB::table('notifications')
 
     }
 
-    public function branding(){
-        return view('user/branding');
-    }
-
     public function mybrand()
     {
 
@@ -1694,6 +1691,10 @@ $first_notification = DB::table('notifications')
 
         return view('vendor.my_branding',$data);
 
+    }
+
+    public function branding(){
+        return view('user/branding');
     }
 
     public function upload_brand_photos(Request $request) {

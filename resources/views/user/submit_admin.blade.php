@@ -31,21 +31,29 @@ Notify Gymscanner @parent
                                 <div class="form-group mb-4">
                                     <label for="formGroupExampleInput">Profile</label>
                                     @if($profile)
-                                    <span style="color: #0ae60a;"><i data-feather="check-circle"></i></span>
+                                    <span style="color: #0ae60a;">
+                                        {{-- <i class="fas fa-check-circle"></i> --}}
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
                                     @else
-                                    <span style="color: red;"><i data-feather="x-circle"></i></span>
+                                    <span style="color: red;"><i class="fas fa-ban"></i></span>
                                     @endif
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="formGroupExampleInput">My Branding</label>
-                                    <span style="color: red;"><i data-feather="x-circle"></i></span>
+                                    <span style="color: red;"><i class="fas fa-ban"></i></span>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="formGroupExampleInput">Membership</label>
                                     @if($membership)
-                                    <span style="color: #0ae60a;"><i data-feather="check-circle"></i></span>
+                                    <span style="color: #0ae60a;">
+                                        {{-- <i class="fas fa-check-circle"></i> --}}
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
                                     @else
-                                    <span style="color: red;"><i data-feather="x-circle"></i></span>
+                                    <span style="color: red;">
+                                        <i class="fas fa-ban"></i>
+                                    </span>
                                     @endif
                                 </div>
                                 
@@ -53,9 +61,9 @@ Notify Gymscanner @parent
                                 <div class="form-group mb-4">
                                     <label for="formGroupExampleInput">Tourist Pass </label>
                                      @if($touristpass)
-                                   <span style="color: #0ae60a;"><i data-feather="check-circle"></i></span>
+                                   <span style="color: #0ae60a;"><i class="fas fa-check-circle"></i></span>
                                     @else
-                                    <span style="color: red;"><i data-feather="x-circle"></i></span>
+                                    <span style="color: red;"><i class="fas fa-ban"></i></span>
                                     @endif
                                 </div>
                                 @endif
@@ -63,17 +71,17 @@ Notify Gymscanner @parent
                                 <div class="form-group mb-4">
                                     <label for="formGroupExampleInput">Bank Account </label>
                                     @if($bank)
-                                   <span style="color: #0ae60a;"><i data-feather="check-circle"></i></span>
+                                   <span style="color: #0ae60a;"><i class="fas fa-check-circle"></i></span>
                                     @else
-                                    <span style="color: red;"><i data-feather="x-circle"></i></span>
+                                    <span style="color: red;"><i class="fas fa-ban"></i></span>
                                     @endif
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label for="formGroupExampleInput">Legal Documents </label>
+                                    <label for="formGroupExampleInput">Documents </label>
                                      @if($document)
-                                  <span style="color: #0ae60a;"><i data-feather="check-circle"></i></span>
+                                  <span style="color: #0ae60a;"><i class="fas fa-check-circle"></i></span>
                                     @else
-                                    <span style="color: red;"><i data-feather="x-circle"></i></span>
+                                    <span style="color: red;"><i class="fas fa-ban"></i></span>
                                     @endif
                                 </div>
                                 

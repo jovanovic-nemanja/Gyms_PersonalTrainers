@@ -516,7 +516,7 @@ class PersonalController extends Controller
     }
 
 
-    public function personal_membership_edit($id){
+     public function personal_membership_edit($id){
 
         $data['membership'] = Personal_Membership::find($id);
         

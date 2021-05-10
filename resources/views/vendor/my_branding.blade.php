@@ -229,7 +229,7 @@ My Branding @parent
                                                 @foreach($countries as $code => $country):
 
                                                     <?php $countryName = ucwords(strtolower($country["name"])); ?>
-		                                            <?php  $check = check_country(@json_decode($about->countries),$code); ?>
+		                                            <?php $check = false; if(@count(@json_decode(@$about->countries)) > 0){ $check = check_country(@json_decode(@$about->countries),$code); }?>
                                                     <option value="{{ $code }}" {{ $check == true?'selected':''}}>{{ $countryName }} </option>
                                                 
                                                 @endforeach
@@ -610,7 +610,7 @@ My Branding @parent
                 async : true,
                 success:function(data){
 
-                    console.log(data);
+                    // console.log(data);
                     
                     // let length = data.length;
                     let images = data.images;
@@ -642,11 +642,20 @@ My Branding @parent
                                     '</div>';
                     }
 
-                    if(avatar.name != '')
+                    if(avatar == null)
                     {
+                        // let path_html1 = 'upload/brands/'+avatar.name;
+                        // let path1 = "{{ asset('') }}"+'/'+path_html1;
+                        // $('.avatar_img').attr('src',path1);
+                        
+                    }
+                    else
+                    {
+
                         let path_html1 = 'upload/brands/'+avatar.name;
                         let path1 = "{{ asset('') }}"+'/'+path_html1;
                         $('.avatar_img').attr('src',path1);
+                        
                     }
 
                     $('.show_branding_images').html(html);
