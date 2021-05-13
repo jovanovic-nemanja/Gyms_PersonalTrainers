@@ -17,6 +17,11 @@ include('web_builder.php');
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('Login','ProfileController@login_view')->name('Login');
+Route::post('Logout','ProfileController@logout')->name('Logout');
+Route::get('/', function () {
+    return view('auth.register');
+});
 
 // Auth::routes();
 Auth::routes(['verify' => true]);
@@ -25,15 +30,15 @@ Auth::routes(['verify' => true]);
     return back();
 })->middleware('auth'); */
 
-Route::get('/', function () {
-    return view('auth.register');
-});
 
 //mybrandroutes
 Route::post('myprofile/upload_brand_photos)', 'ProfileController@upload_brand_photos')->name('upload_brand_photos');
 Route::post('myprofile/brand_photos_delete)', 'ProfileController@brand_photos_delete')->name('brand_photos_delete');
 Route::post('myprofile/submit_brand_links)', 'ProfileController@submit_brand_links')->name('submit_brand_links');
 Route::post('myprofile/submit_brand_certificates)', 'ProfileController@submit_brand_certificates')->name('submit_brand_certificates');
+Route::post('myprofile/update_brand_links)', 'ProfileController@update_brand_certificates')->name('update_brand_links');
+Route::post('myprofile/delete_brand_links)', 'ProfileController@delete_brand_certificates')->name('delete_brand_links');
+
 Route::get('myprofile/getBrandingData)', 'ProfileController@getBrandingData')->name('getBrandingData');
 Route::post('myprofile/delete_brand_photos)', 'ProfileController@delete_brand_photos')->name('delete_brand_photos');
 Route::post('myprofile/submit_brand_name)', 'ProfileController@submit_brand_name')->name('submit_brand_name');
@@ -49,8 +54,7 @@ Route::get('/email/verify', function () {
 
 Route::get('thank-you','ProfileController@thankyou')->name('thank-you');
 Route::get('verify','ProfileController@verify_email')->name('verify');
-Route::post('Login','ProfileController@login_view')->name('Login');
-Route::post('Logout','ProfileController@logout')->name('Logout');
+
 Route::get('/homes', 'ProfileController@view_dashboard')->name('homes');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
