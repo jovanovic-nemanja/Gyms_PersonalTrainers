@@ -13,6 +13,77 @@
 		border:1px solid #d8d8d8;
 		border-radius: 8px;
 	}
+
+	.tooltips {
+        position: relative;
+        display: inline-block;
+        /*border-bottom: 1px dotted black;*/
+        opacity: 1;
+    }
+
+    .tooltips .tooltiptext {
+        visibility: hidden;
+        width: 30rem;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: -2rem;
+        left: 110%;
+    }
+
+    .tooltips .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        margin-top: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent black transparent transparent;
+    }
+    .tooltips:hover .tooltiptext {
+        visibility: visible;
+    }
+
+
+    .tooltip_avatar {
+        position: relative;
+        display: inline-block;
+        /*border-bottom: 1px dotted black;*/
+        opacity: 1;
+    }
+
+    .tooltip_avatar .tooltipavatartext {
+        visibility: hidden;
+        width: 25rem;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 1rem;
+        left: 110%;
+    }
+
+    .tooltip_avatar .tooltipavatartext::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        margin-top: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent black transparent transparent;
+    }
+    .tooltip_avatar:hover .tooltipavatartext {
+        visibility: visible;
+    }
 </style>
 
 <div class="layout-px-spacing">
@@ -32,7 +103,8 @@
 							</div>
 						</form>
 						
-						<div class="avatar avatar-xl">
+						<div class="avatar avatar-xl tooltip_avatar">
+                            <span class="tooltipavatartext">These images will be used in your profile in Gymscanner Apps and Website. <br>The maximum size of photo should be 400KB.</span>
 							
 							<div class="container change_brand_image" style="background-color:white;display:inline-block; width:30px; height:30px;border-radius:50%;margin-left: 100px;position: absolute;margin-top: 90px;box-shadow: 0px 0px 4px black;z-index:3;cursor:pointer;">
 								<span style="color:black;font-size:26px;">
@@ -65,17 +137,20 @@
                         @foreach($youtube as $key => $v)
 	                        <div class="col-lg-12 mb-2">
 	                            <div class="embed-responsive embed-responsive-16by9">
-	                                <iframe class="embed-responsive-item" width="260" height="100" src="{{ $v->name }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-	                                </iframe>                                    
+	                                <!-- <video width="260" height="100" controls autoplay>
+		                                <source src="{{ $v->name }}" type="video/mp4">https://www.youtube.com/embed/tgbNymZ7vqY
+		                            </video>  <br> -->
+		                            <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+									</iframe>                       
 	                            </div>
 	                        </div>
 	                        <br>
 	                        <div class="col-lg-12 text-right mb-4">
-								<a href="javascript:void(0)" class="edit_brand_links" data-value="{{ $v->id }}" data-param-value="{{ $v->name }}">
-									<i class="fa fa-pencil" style="font-size: 18px; font-weight: bold; color: blue;"></i>
+								<a href="javascript:void(0)" class="edit_brand_links" data-value="{{ $v->id }}" data-param-value="{{ $v->name }}" style="color: green;" title="Edit">
+									<i data-feather="edit" style="height: 2rem; width: auto!important;"></i>
 								</a>
-								<a href="javascript:void(0)" class="delete_brand_links" data-value="{{ $v->id }}">
-									<i class="fa fa-times" style="font-size: 18px; font-weight: bold; color: red;"></i>
+								<a href="javascript:void(0)" class="delete_brand_links" data-value="{{ $v->id }}" style="color: red; cursor: pointer;" title="Delete">
+									<i data-feather="trash" style="height: 2rem; width: auto!important;"></i>
 								</a>
 	                        </div>
                         @endforeach
@@ -88,8 +163,13 @@
 			<div class="widget-content widget-content-area">
 				<div class="row">
 					
-					<div class="col-lg-6">
-						<h3 class="font-size:15px;color:#393939;font-weight:600;">Photos</h3>
+					<div class="col-lg-6 d-flex">
+						<h3 class="font-size:15px;color:#393939;font-weight:600;">Photos&nbsp;</h3>
+
+						<div class="tooltips mt-2">
+                            <i class="fa fa-question-circle"></i>&nbsp;&nbsp;
+                            <span class="tooltiptext">These images will be used in your profile in Gymscanner Apps and Website. <br>The maximum size of photo should be 1024 X 512 pixels.</span>
+                        </div>
 					</div>
 					
 					<div class="col-lg-6 text-right">
@@ -100,39 +180,9 @@
 				</div>
 
 				<hr>
-
-				<!-- <div class="row uploaded_photos">
-					<div class="col-md-4 image_div my-2">
-						<input type="checkbox" class="image_check float-right" value="">
-						<img src="{{ asset('img/images/10.jpg') }}" class="image w-100" alt="Image">
-					</div>
-					<div class="col-md-4 image_div my-2">
-						<input type="checkbox" class="image_check float-right" value="">
-						<img src="{{ asset('img/images/10.jpg') }}" class="image w-100" alt="Image">
-					</div>
-					<div class="col-md-4 image_div my-2">
-						<input type="checkbox" class="image_check float-right" value="">
-						<img src="{{ asset('img/images/10.jpg') }}" class="image w-100" alt="Image">
-					</div>
-					<div class="col-md-4 image_div my-2">
-						<input type="checkbox" class="image_check float-right" value="">
-						<img src="{{ asset('img/images/10.jpg') }}" class="image w-100" alt="Image">
-					</div>
-					<div class="col-md-4 image_div my-2">
-						<input type="checkbox" class="image_check float-right" value="">
-						<img src="{{ asset('img/images/10.jpg') }}" class="image w-100" alt="Image">
-					</div>
-					<div class="col-md-4 image_div my-2">
-						<input type="checkbox" class="image_check float-right" value="">
-						<img src="{{ asset('img/images/10.jpg') }}" class="image w-100" alt="Image">
-					</div>
-				</div> -->
-
 			</div>
 			<div class="layout-spacing">
 				<div class="widget-content widget-content-area">
-					
-					
 					<!-- Gallery -->
 					<div class="row show_branding_images" style="max-width:103%;">
 						
@@ -142,44 +192,15 @@
 					<form action="{{route('save_brand_info')}}" method="post">
 						@csrf
 						<div style="margin-top:-10px;!important" class="">
-							<h5 class="ml-1"><b>About the GYM</b></h5>
-							<textarea class="form-control" name="about" placeholder="About me" rows="4">{{ @$about->about }}</textarea>
+							<h5 class="ml-1"><b>About the Gym</b></h5>
+							<textarea class="form-control" name="about" placeholder="About the Gym" rows="4" required>{{ @$about->about }}</textarea>
 						</div>
 						<br>
 						
 						<h5 class=""><b>Insert Google Location:</b></h5>
 						
-						<div class="w-100">
-							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27814.411819952653!2d47.96435710602138!3d29.376101453940137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9c83ce455983%3A0xc3ebaef5af09b90e!2sKuwait%20City%2C%20Kuwait!5e0!3m2!1sen!2sbd!4v1619965282697!5m2!1sen!2sbd" width="100%" height="350" style="border:1px solid #d8d8d8; border-radius: 10px" allowfullscreen="" loading="lazy"></iframe>
-						</div>
-						
-						<?php
-						$show_countries  = 'none';
-						if(@$about->select_country == 'selected')
-						{
-							$show_countries  = 'block';
-						}
-						// print_r(@json_decode($about->countries));
-						function check_country($arr,$code)
-						{
-							foreach($arr as $v)
-							{
-								if($v == $code)
-								{
-									return true;
-									break;
-								}
-							}
-							return false;
-						}
-						?>
-						<div class="row pl-4 show_countries" style="display:{{ $show_countries }}">
-							<div class="col-md-12">
-								<select class="form-control tagging" multiple="multiple" name="selected_counrties[]">
-									<option>Country</option>
-								</select>
-							</div>
-						</div>
+						<textarea name="google_location" class="form-control" placeholder="Google Location" rows="4" required>{{ @$about->google_location }}</textarea>
+						<br>
 						<button class="btn btn-primary" type="submit">Save Changes</button>
 					</form>
 				</div>
@@ -233,17 +254,22 @@
 							@csrf
 							<div class="form-group">
 								<label>Link</label>
-								<input type="text" class="form-control brand_link" name="link">
+								<input type="text" class="form-control brand_link youtube_link" name="link">
 								
 							</div>
 							
 						</div>
 						<!-- Modal footer -->
-						<div class="modal-footer">
+						<div class="modal-footer" style="display: none;">
 							<button type="submit" class="btn btn-primary">Save Changes</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 						</div>
 					</form>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary-temp">Save Changes</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -264,17 +290,22 @@
 							@csrf
 							<div class="form-group">
 								<label>Link</label>
-								<input type="text" class="form-control brand_link" name="link" id="edit_brand_links">
+								<input type="text" class="form-control brand_link youtube_edit_link" name="link" id="edit_brand_links">
 								<input type="hidden" name="brand_link_id" id="brand_link_id">
 							</div>
 							
 						</div>
 						<!-- Modal footer -->
-						<div class="modal-footer">
+						<div class="modal-footer" style="display: none;">
 							<button type="submit" class="btn btn-primary">Save Changes</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 						</div>
 					</form>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary-temp">Save Changes</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -424,6 +455,23 @@
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 						</div>
 					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--confirmation brand logo-->
+		<div class="modal fade" id="ConfirmLogoModal">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content ml-auto w-75">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Successfully changed your branding Logo.</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -619,6 +667,12 @@
     });
 
     function UploadImage(input) {
+    	var file = input;
+    	var file_size = input.files[0].size;
+        if (file_size > 400000) {
+        	alert('Branding Logo image size should be than small with 400KB.');
+        	return;
+        }
         $('#upload-image-form').trigger('submit');
     }
 
@@ -634,6 +688,7 @@
             processData: false,
             success:function(){
                 
+                $('#ConfirmLogoModal').modal('show');
                 getBrandingData();
                 
             } 
@@ -664,6 +719,82 @@
         $('#DeleteBrandsLinksModal').modal('show');
         $('#brand_link_id_for_delete').val(value_of_brandlink);
     });
+
+    function validateYouTubeUrlInAdd(flag)
+	{
+		if (flag == 1) {
+			var url = $('.youtube_link').val();	
+		}else{
+			var url = $('.youtube_edit_link').val();
+		}
+	    
+        if (url) {
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+            var match = url.match(regExp);
+            if (match && match[2].length == 11) {
+            	const videoId = getId(url);
+				const videoEmbedlink = "https:://www.youtube.com/embed/"+ videoId;
+				
+            	if (flag == 1) {
+            		$('.youtube_link').val(videoEmbedlink);
+            		$('#AddBrandsLinksModal .btn-primary').click();	
+            	}else{
+            		$('.youtube_edit_link').val(videoEmbedlink);
+            		$('#EditBrandsLinksModal .btn-primary').click();
+            	}
+            }
+            else {
+                var mes = "Please put correct YouTube link.";
+	            var title = 'Warning!';
+	            toastr.options = {
+				  	"closeButton": true,
+				  	"debug": false,
+				  	"newestOnTop": false,
+				  	"progressBar": false,
+				  	"positionClass": "toast-top-right",
+				  	"onclick": null,
+				  	"showDuration": "5000",
+				  	"hideDuration": "5000",
+				  	"timeOut": "5000",
+				  	"extendedTimeOut": "1000",
+				};
+	            toastr.warning(mes, title); //info, success, warning, error
+            }
+        }else{
+        	var mes = "Please put correct YouTube link.";
+            var title = 'Warning!';
+            toastr.options = {
+			  	"closeButton": true,
+			  	"debug": false,
+			  	"newestOnTop": false,
+			  	"progressBar": false,
+			  	"positionClass": "toast-top-right",
+			  	"onclick": null,
+			  	"showDuration": "5000",
+			  	"hideDuration": "5000",
+			  	"timeOut": "5000",
+			  	"extendedTimeOut": "1000",
+			};
+            toastr.warning(mes, title); //info, success, warning, error
+        }
+	}
+
+	function getId(url) {
+	    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+	    const match = url.match(regExp);
+
+	    return (match && match[2].length === 11)
+	      ? match[2]
+	      : null;
+	}
+
+	$('#AddBrandsLinksModal .btn-primary-temp').click(function(e) {
+		validateYouTubeUrlInAdd(1);
+	});
+
+	$('#EditBrandsLinksModal .btn-primary-temp').click(function(e) {
+		validateYouTubeUrlInAdd(2);
+	});
 </script>
 
 @endsection

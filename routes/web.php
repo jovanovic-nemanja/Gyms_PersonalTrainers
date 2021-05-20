@@ -20,6 +20,17 @@ include('web_builder.php');
 Route::get('Login','ProfileController@login_view')->name('Login');
 Route::post('Logout','ProfileController@logout')->name('Logout');
 Route::get('/', function () {
+    if (auth()->check()) {
+        if (auth()->user()->role == 1) {
+            return redirect('admin');
+        } else if(auth()->user()->role == 2) {
+            return redirect('myprofile');
+        } else if(auth()->user()->role == 3) {
+            return redirect('personal_myprofile');
+        } else {
+            return redirect('login');
+        }
+    }
     return view('auth.register');
 });
 
@@ -45,6 +56,14 @@ Route::post('myprofile/submit_brand_name)', 'ProfileController@submit_brand_name
 Route::post('myprofile/save_brand_info)', 'ProfileController@save_brand_info')->name('save_brand_info');
 Route::post('myprofile/submit_brand_image)', 'ProfileController@submit_brand_image')->name('submit_brand_image');
 Route::get('myprofile/branding', 'ProfileController@branding')->name('branding.index');
+
+
+// deactivate account 
+Route::get('myaccount/status', 'ProfileController@status')->name('myaccount.status');
+Route::post('myaccount/change_myaccount_status', 'ProfileController@change_myaccount_status')->name('myaccount.change_myaccount_status');
+
+
+
 // Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
 // Route::resource('users', 'UsersController');
 
@@ -69,30 +88,29 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middleware('verified');
 // Route::group(['middleware' => 'verified'], function () {
     // Route::group(['middleware' => 'auth'], function () {
-        Route::group(['middleware' => 'gym'], function () {
-            // Route::get('myprofile', 'ProfileController@index')->name('myprofile');
-            //avatar
-            Route::post('profile/avatar', 'ProfileController@avatar')->name('avatar');
-            //company
-            Route::post('profile/company', 'ProfileController@company')->name('company');
+Route::group(['middleware' => 'gym'], function () {
+    Route::get('myprofile', 'ProfileController@index')->name('myprofile')->middleware('verified');
+    // Route::get('myprofile', 'ProfileController@index')->name('myprofile');
+    //avatar
+    Route::post('profile/avatar', 'ProfileController@avatar')->name('avatar');
+    //company
+    Route::post('profile/company', 'ProfileController@company')->name('company');
 
-            Route::post('profile/reset', 'ProfileController@reset')->name('profile.reset');
-            
-            //banner
-            //dropzone
-            Route::post('upload/store', 'ImageUploadController@store');
-            Route::post('delete', 'ImageUploadController@delete');
-            //banner
-            Route::post('profile/banner/delete/{id}', 'ProfileController@banner_del')->name('banner.delete');
-            
-            Route::get('myprofile/touristpass', 'ProfileController@touristpass')->name('myprofile.touristpass');
-            Route::post('myprofile/publish_tourist', 'ProfileController@touristpass_save')->name('publish_tourist');
-            Route::get('myprofile/touristpass/delete/{id}', 'ProfileController@touristpass_delete')->name('touristpass.delete');
-
-        });
+    Route::post('profile/reset', 'ProfileController@reset')->name('profile.reset');
+    
+    //banner
+    //dropzone
+    Route::post('upload/store', 'ImageUploadController@store');
+    Route::post('delete', 'ImageUploadController@delete');
+    //banner
+    Route::post('profile/banner/delete/{id}', 'ProfileController@banner_del')->name('banner.delete');
+    
+    Route::get('myprofile/touristpass', 'ProfileController@touristpass')->name('myprofile.touristpass');
+    Route::post('myprofile/publish_tourist', 'ProfileController@touristpass_save')->name('publish_tourist');
+    Route::get('myprofile/touristpass/delete/{id}', 'ProfileController@touristpass_delete')->name('touristpass.delete');
+});
 
 
 
