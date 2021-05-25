@@ -140,7 +140,7 @@
 	                                <!-- <video width="260" height="100" controls autoplay>
 		                                <source src="{{ $v->name }}" type="video/mp4">https://www.youtube.com/embed/tgbNymZ7vqY
 		                            </video>  <br> -->
-		                            <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+		                            <iframe width="420" height="345" src="{{ $v->name }}">
 									</iframe>                       
 	                            </div>
 	                        </div>
@@ -733,7 +733,7 @@
             var match = url.match(regExp);
             if (match && match[2].length == 11) {
             	const videoId = getId(url);
-				const videoEmbedlink = "https:://www.youtube.com/embed/"+ videoId;
+				const videoEmbedlink = "https://www.youtube.com/embed/"+ videoId;
 				
             	if (flag == 1) {
             		$('.youtube_link').val(videoEmbedlink);

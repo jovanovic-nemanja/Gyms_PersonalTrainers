@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md-4 form-group mb-4">
                         <label for="currency">Currency <span class="text-danger">*</span></label>
-                        <select class="form-control" id="currency" required="" name="currency">
+                        <select class="form-control" id="currency" required="" name="currency" style="font-style: normal!important;; font-family: Nunito;">
                             <option value="" selected="" disabled="">Select...</option>
                             <option>USD($)</option>
                             <option>Euro(€)</option>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group mb-4">
                     <label for="duration">Duration<span class="text-danger">*</span></label>
-                    <select class="form-control" id="duration" required="" name="duration">
+                    <select class="form-control" id="duration" required="" name="duration" style="font-style: normal!important;; font-family: Nunito;">
                         <option value="" selected="" disabled="">Select...</option>
                         <option>1 day</option>
                         <option>2 days</option>
@@ -90,8 +90,14 @@
                                 <p style="text-align:center; color:black;background-color:gray;"> Price:   {{$temp->price.$temp->currency}}</p>
                                 <p style="text-align:center;background-color:black;color:white;">Duration: {{$temp->duration}}</p>
                                 <p style="text-align:center;background-color:lightblue;color:black;">Facility: {{$temp->facility}}</p>
-                                <a href="{{ route('touristpass.delete',$temp->id)}}" style="color:black;">
-                                <button type="button" class="btn btn-block btn-sm btn-warning">Delete</button></a>
+                                <a style="color:black; cursor: pointer;" onclick="event.preventDefault(); document.getElementById('delete-form-{{$temp->id}}').submit();">
+
+                                    <form id="delete-form-{{$temp->id}}" action="{{ route('touristpass.delete', $temp->id) }}" method="POST" style="display: none;">
+                                        <input type="hidden" name="_method" value="delete">
+                                        @csrf
+                                    </form>
+                                    <button type="button" class="btn btn-block btn-sm btn-warning">Delete</button>
+                                </a>
                             </div>
                         </div>
                     </div>
